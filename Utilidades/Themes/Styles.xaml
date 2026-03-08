@@ -4,6 +4,8 @@
     <SolidColorBrush x:Key="AzulAiron" Color="#003E61"/>
     <SolidColorBrush x:Key="BlancoAiron" Color="#F0F8FF"/>
 
+    <SolidColorBrush x:Key="AzulSecundarioAiron" Color="#1A5A80"/>
+
 
     <!-- PARA EL TAB ITEM-->
     <Style x:Key="estiloTabItem" TargetType="TabItem">
@@ -26,6 +28,28 @@
     
     <!-- PARA LA TEXTBOX -->
     <Style x:Key="estiloTextBox" TargetType="TextBox">
+        <Setter Property="Background" Value="{StaticResource BlancoAiron}"/>
+        <Setter Property="HorizontalAlignment"  Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontFamily" Value="Calibri Light"/>
+        <Setter Property="MaxHeight"  Value="60"/>
+    </Style>
+    
+    <!-- PARA LOS BOTONES -->
+    <Style x:Key="estiloBoton"  TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource AzulSecundarioAiron}"/>
+        <Setter Property="MaxHeight" Value="60"/>
+        <Setter Property="MaxWidth"  Value="200"/>
+        <Setter Property="Foreground" Value="{StaticResource BlancoAiron}"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+    </Style>
+
+    <!-- PARA La contraseña -->
+    <Style x:Key="estiloContrasenya" TargetType="PasswordBox">
         <Setter Property="Background" Value="{StaticResource BlancoAiron}"/>
         <Setter Property="HorizontalAlignment"  Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>

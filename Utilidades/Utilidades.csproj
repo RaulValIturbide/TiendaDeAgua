@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="data\img\cancel.png" />
+    <None Remove="data\img\check.png" />
     <None Remove="data\img\delete.png" />
     <None Remove="data\img\edicion.png" />
     <None Remove="data\img\guardar.png" />
@@ -22,6 +23,7 @@
     <Resource Include="data\img\cancel.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="data\img\check.png" />
     <Resource Include="data\img\delete.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:TiendaDeAgua"
         xmlns:util="clr-namespace:Utilidades;assembly=Utilidades"
         WindowStartupLocation="CenterScreen"
+        Icon="/data/img/AironIcono.png"
         mc:Ignorable="d"
-        Title="Pagina Principal" Height="450" Width="800">
+        Title="Pagina Principal" Height="800" Width="1000">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -15,6 +16,65 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
         </Grid>
+        <TabControl x:Name="tabControlPrincipal">
+            <TabItem Header="Entrar Usuario">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="/data/img/AironSplashScreen.png" Grid.Column="1"/>
+                    </Grid>
+                    <Grid Grid.Row="1" x:Name="dtgDatosUsuario">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"  MaxWidth="200"/>
+                            <ColumnDefinition Width="2*" MaxWidth="400"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" MaxHeight="100"/>
+                            <RowDefinition Height="1*" MaxHeight="100"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <!-- NOMBRE -->
+                        <Label Grid.Row="0" Grid.Column="1" Content="Nombre Usuario" Style="{StaticResource estiloLabel}"/>
+                        <TextBox  Grid.Row="0" Grid.Column="2" Text="{Binding Nombre}" Style="{StaticResource estiloTextBox}"/>
+                        
+                        <!-- CONTRASENYA -->
+                        <Label Grid.Row="1" Grid.Column="1" Content="Contraseña" Style="{StaticResource estiloLabel}"/>
+                        <PasswordBox x:Name="cajaContra" Grid.Row="1" Grid.Column="2" PasswordChanged="PasswordBox_PasswordChanged" Style="{StaticResource estiloContrasenya}"/>
+
+                        <!-- NUEVO USUARIO -->
+                        <Grid Grid.Row="2" Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition  Height="1*"/>
+                                <RowDefinition  Height="1*"/>
+                                <RowDefinition  Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <!-- Botno Acceder -->
+                            <Button Grid.Column="0" Grid.Row="0" x:Name="btnAcceder" Content="Acceder" 
+                                    Click="btnAcceder_Click" Margin="10" Style="{StaticResource estiloBoton}"/>
+                            <!-- Boton Registrar Usuario -->
+                            <Button Grid.Column="1" Grid.Row="0" x:Name="btnRegistrar" Content="Registrate"
+                                    Click="btnRegistrar_Click" Margin="10" Style="{StaticResource estiloBoton}"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>

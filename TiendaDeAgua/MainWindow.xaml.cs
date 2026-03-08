@@ -9,6 +9,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TiendaDeAgua.DTOs;
+using TiendaDeAgua.Tablas;
+using Utilidades.Recursos;
 
 namespace TiendaDeAgua
 {
@@ -17,36 +20,40 @@ namespace TiendaDeAgua
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static UsuarioDTO _UsuarioDTO = new();
+
         public MainWindow()
         {
             InitializeComponent();
 
+            dtgDatosUsuario.DataContext = _UsuarioDTO;
             ComunServicioAiron.Conectar.ActivarConexion();
 
+        }
+        private void btnAcceder_Click(object sender, RoutedEventArgs e)
+        {
 
-            string sql = " INSERT INTO usuarios(nombre,contrasenya) " +
-                         " VALUES(@pNombre,@pContrasenya) ";
+        }
 
-            var parametros = new SqliteParameter[]
-                {
-                    new SqliteParameter("@pNombre","Raul"),
-                    new SqliteParameter("@pContrasenya","1234")
-                };
-            int filasAfectadas = ComunServicioAiron.Conectar.EjecutarNonQuery(sql, parametros);
-            if(filasAfectadas > 0)
+        private void btnRegistrar_Click(object sender, RoutedEventArgs e)
+        {
+            ResultadoDTO res = UsuarioBD.AltaFila(_UsuarioDTO);
+
+            if(res.codigoError == 0)
             {
-                MessageBox.Show("USUARIO AGREGADO");
+                VentanaError v = new VentanaError(res.mensajeInformacion);
+                v.Show();
             }
             else
             {
-                MessageBox.Show("ERROR");
+                VentanaError v = new VentanaError(res);
+                v.Show();
             }
-
-            
-            
         }
 
-
-
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            _UsuarioDTO.Contrasenya = cajaContra.Password;
+        }
     }
 }

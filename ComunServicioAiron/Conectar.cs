@@ -24,12 +24,11 @@ namespace ComunServicioAiron
             connection.Open();
 
             string sql = @"
-        CREATE TABLE IF NOT EXISTS usuarios (
-            ID INTEGER PRIMARY KEY AUTOINCREMENT,
-            nombre TEXT NOT NULL,
-            contrasenya TEXT NOT NULL
-        );
-    ";
+                    CREATE TABLE IF NOT EXISTS usuarios (
+                    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                    nombre TEXT NOT NULL,
+                    contrasenya TEXT NOT NULL );
+                ";
 
             using var command = new SqliteCommand(sql, connection);
             command.ExecuteNonQuery();
@@ -67,6 +66,51 @@ namespace ComunServicioAiron
                 return -1;
             }
         }
+        /// <summary>
+        /// Metodo para realizar consultas SQL con valor único: Count,Max,Min,Sum...
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sql"></param>
+        /// <param name="parametros"></param>
+        /// <returns></returns>
+        public static T EjecutarEscalar<T>(string sql, SqliteParameter[] parametros)
+        {
+            try
+            {
+                using (SqliteConnection conexion = new SqliteConnection($"Data Source={dbPath}"))
+                {
+                    conexion.Open();
+
+                    using (var comando = new SqliteCommand(sql, conexion))
+                    {
+                        if (parametros != null)
+                        {
+                            comando.Parameters.AddRange(parametros);
+                        }
+
+                        object valor = comando.ExecuteScalar();
+
+                        if (valor == null || valor == DBNull.Value)
+                        {
+                            return default(T);
+                        }                            
+
+                        return (T)Convert.ChangeType(valor, typeof(T));
+                    }
+                }
+            }
+            catch (Exception ex)
+            { 
+                return default(T);
+            }
+        }
+
+
+
+
+
+
+
 
 
 
