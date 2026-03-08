@@ -1,0 +1,46 @@
+<UserControl x:Class="Utilidades.BarraBotones"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compSility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Utilidades"
+             Height="50" Width="560">
+    
+    <StackPanel Orientation="Horizontal" >
+        
+        <Button x:Name="btnNuevo"  Click="btnNuevo_Click" Background="DarkGreen" Margin="0,0,5,0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Utilidades;component/data/img/Nuevo.png" Width="20" HorizontalAlignment="Left" Margin="5,0,5,0"/>
+                <TextBlock Text="Nuevo" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="btnModificar"  Click="btnModificar_Click" Background="Orange" Margin="5,0,5,0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Utilidades;component/data/img/edicion.png" Width="20" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+                <TextBlock Text="Modificar" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="btnGuardar"  Click="btnGuardar_Click" Background="LawnGreen" Margin="5,0,5,0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Utilidades;component/data/img/guardar.png" Width="20" HorizontalAlignment="Left" Margin="5,0,10,0"/>
+                <TextBlock Text="Guardar" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="btnCancelar" Click="btnCancelar_Click" Background="PaleVioletRed" Margin="5,0,5,0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Utilidades;component/data/img/cancel.png" Width="20" HorizontalAlignment="Left" Margin="5,0,10,0"/>
+                <TextBlock Text="Cancelar" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="btnEliminar"  Click="btnEliminar_Click" Background="Red" Margin="5,0,5,0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Utilidades;component/data/img/delete.png" Width="20" HorizontalAlignment="Left" Margin="5,0,10,0"/>
+                <TextBlock Text="Eliminar" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+            </StackPanel>
+        </Button>
+    </StackPanel>
+</UserControl>
