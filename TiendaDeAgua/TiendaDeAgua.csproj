@@ -12,6 +12,7 @@
     <None Remove="data\img\AironIcono.ico" />
     <None Remove="data\img\AironIcono.png" />
     <None Remove="data\img\AironSplashScreen.png" />
+    <None Remove="data\img\AironSplashScreenInversa.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,14 +31,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="data\img\AironIcono.png" />
+    <Resource Include="data\img\AironIcono.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="data\img\AironSplashScreen.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="interfaz\" />
+    <Resource Include="data\img\AironSplashScreenInversa.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

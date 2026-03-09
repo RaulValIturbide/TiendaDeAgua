@@ -17,7 +17,7 @@
             </Grid.RowDefinitions>
         </Grid>
         <TabControl x:Name="tabControlPrincipal">
-            <TabItem Header="Entrar Usuario">
+            <TabItem Header="Entrar Usuario" x:Name="tbItemLogin">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
@@ -53,7 +53,21 @@
                         <Label Grid.Row="1" Grid.Column="1" Content="Contraseña" Style="{StaticResource estiloLabel}"/>
                         <PasswordBox x:Name="cajaContra" Grid.Row="1" Grid.Column="2" PasswordChanged="PasswordBox_PasswordChanged" Style="{StaticResource estiloContrasenya}"/>
 
-                        <!-- NUEVO USUARIO -->
+                        <!-- Contrasenya pero textbox -->
+                        <TextBox x:Name="txtContra" Grid.Row="1" Text="{Binding Contrasenya}" 
+                                 Grid.Column="2" Style="{StaticResource estiloTextBox}"
+                                 Visibility="Collapsed"/>
+
+                        <!-- check box mostrar/ocultar la contra -->
+                        <CheckBox  x:Name="ckBoxMostrarContra" Content="Mostrar Contraseña" IsThreeState="False" 
+                                   IsChecked="False" 
+                                   Checked="ckBoxMostrarContra_Checked"
+                                   Unchecked="ckBoxMostrarContra_Unchecked"
+                                   Grid.Row="1" Grid.Column="3"
+                                   VerticalAlignment="Bottom"
+                                   Margin="20"/>
+                        
+                        
                         <Grid Grid.Row="2" Grid.Column="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -73,6 +87,56 @@
                         </Grid>
                     </Grid>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Pagina Principal"  x:Name="tbItemPaginaPrincipal" Background="{StaticResource BlancoAiron}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid Background="{StaticResource AzulSecundarioAiron}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="lbSaludo" Style="{StaticResource estiloLabelSaludo}" Grid.Column="0"/>
+                            <Image Source="/data/img/AironSplashScreenInversa.png" Grid.Column="1" HorizontalAlignment="Right"/>
+                        </Grid>
+
+
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- TARJETA PROVEEDOR -->
+                        <util:Tarjeta Grid.Row="1" Grid.Column="1" x:Name="TarjetaProveedor"/>
+                        
+                        <!-- TARJETA INVENTARIO -->
+                        <util:Tarjeta Grid.Row="1" Grid.Column="2" x:Name="TarjetaInventario"/>
+                        
+                        <!-- TARJETA CLIENTES -->
+                        <util:Tarjeta Grid.Row="2" Grid.Column="1" x:Name="TarjetaCliente"/>
+                        
+                        <!-- TARJETA Administrador -->
+                        <util:Tarjeta Grid.Row="2" Grid.Column="2" x:Name="TarjetaAdministrador"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Visibility="Collapsed" x:Name="tbItemProveedor" Header="Proveedores">
+                <Frame x:Name="frameProveedor" NavigationUIVisibility="Hidden"/>
             </TabItem>
         </TabControl>
 

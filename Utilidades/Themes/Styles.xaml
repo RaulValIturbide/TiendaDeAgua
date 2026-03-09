@@ -60,4 +60,15 @@
         <Setter Property="MaxHeight"  Value="60"/>
     </Style>
     
+    <!-- PARA Label  Titulo -->
+    <Style x:Key="estiloLabelSaludo" TargetType="Label">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="20,0,0,0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{StaticResource BlancoAiron}"/>
+    </Style>
+
 </ResourceDictionary>

@@ -27,7 +27,8 @@ namespace ComunServicioAiron
                     CREATE TABLE IF NOT EXISTS usuarios (
                     ID INTEGER PRIMARY KEY AUTOINCREMENT,
                     nombre TEXT NOT NULL,
-                    contrasenya TEXT NOT NULL );
+                    contrasenya TEXT NOT NULL,
+                    ModoEntrada INTEGER DEFAULT 0);
                 ";
 
             using var command = new SqliteCommand(sql, connection);
@@ -105,6 +106,44 @@ namespace ComunServicioAiron
             }
         }
 
+
+        public static T ObternerDatos<T>(string sql, SqliteParameter[] parametros) where T : new()
+        {
+            using (var conexion = new SqliteConnection($"Data Source={dbPath}"))
+            {
+                conexion.Open();
+
+                using (var comando = new SqliteCommand(sql, conexion))
+                {
+                    if (parametros != null)
+                    {
+                        comando.Parameters.AddRange(parametros);
+                    }
+                    
+                    using (var reader = comando.ExecuteReader())
+                    {
+                        if (!reader.Read())
+                            return default;
+
+                        T entidad = new T();
+
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            string nombreColumna = reader.GetName(i);
+                            object valor = reader.GetValue(i);
+
+                            var propiedad = typeof(T).GetProperty(nombreColumna);
+
+                            if (propiedad != null && valor != DBNull.Value)
+                            {
+                                propiedad.SetValue(entidad, Convert.ChangeType(valor, propiedad.PropertyType));
+                            }
+                        }
+                        return entidad;
+                    }
+                }
+            }
+        }
 
 
 

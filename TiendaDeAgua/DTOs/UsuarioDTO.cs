@@ -10,6 +10,7 @@ namespace TiendaDeAgua.DTOs
     {
         public string Nombre { get; set; } = string.Empty;
         public string Contrasenya { get; set; } = string.Empty;
+        public int ModoEntrada { get; set; } = 0;
         public ResultadoDTO ValidarDatos()
         {
             StringBuilder mensajero = new StringBuilder();
@@ -19,14 +20,14 @@ namespace TiendaDeAgua.DTOs
             if(string.IsNullOrEmpty(Nombre) || string.IsNullOrWhiteSpace(Nombre))
             {
                 contadorErrores++;
-                mensajero.AppendLine($"{contadorErrores}-Rellena el nombre de Usuario.");
+                mensajero.AppendLine($"{contadorErrores}-Escriba su nombre de Usuario.");
                 res.codigoError = 101;
             }
 
             if(string.IsNullOrEmpty(Contrasenya) || string.IsNullOrWhiteSpace(Contrasenya))
             {
                 contadorErrores++;
-                mensajero.AppendLine($"{contadorErrores}-Rellene una contraseña.");
+                mensajero.AppendLine($"{contadorErrores}-Escriba su contraseña.");
                 res.codigoError = 102;
             }
 
