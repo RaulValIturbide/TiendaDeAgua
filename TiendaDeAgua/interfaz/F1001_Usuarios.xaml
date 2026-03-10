@@ -1,0 +1,77 @@
+﻿<Page x:Class="TiendaDeAgua.interfaz.F1001_Usuarios"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TiendaDeAgua.interfaz"
+      xmlns:util="clr-namespace:Utilidades;assembly=Utilidades"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="900"
+      Title="F1001_Usuarios">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="ADMINISTRACIÓN DE USUARIOS" 
+               Background="{StaticResource AzulSecundarioAiron}"
+               FontSize="30"
+               FontFamily="Segoe UI Semibold"
+               Foreground="{StaticResource BlancoAiron}"
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Center"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.8*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid Grid.Column="0" x:Name="dtgUsuarios" SelectionChanged="dtgUsuarios_SelectionChanged"
+                      AutoGenerateColumns="False" IsReadOnly="True"
+                      Margin="10">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="1*"/>
+                    <DataGridTextColumn Header="Contraseña" Binding="{Binding Contrasenya}" Width="1*"/>
+                    <DataGridTextColumn Header="Modo Entrada" Binding="{Binding ModoEntrada}" Width="1*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <util:BarraBotones Grid.Row="0" Padding="5" VerticalAlignment="Center" x:Name="BarraBotones_Principal"/>
+                <GroupBox Header="MTO Usuarios" Grid.Row="1" x:Name="gbUsuario">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="1*" MaxHeight="70"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="1*"  MaxHeight="70"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="1*" MaxHeight="70"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- NOMBRE USUARIO -->
+                        <Label Grid.Row="1" Grid.Column="0" Content="Nombre" Style="{StaticResource estiloLabel}"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Nombre}" Style="{StaticResource estiloTextBox}"/>
+                        
+                        <!-- Contrasenyas -->
+                        <Label Grid.Row="3" Grid.Column="0" Content="Contraseñas" Style="{StaticResource estiloLabel}"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Contrasenya}" Style="{StaticResource estiloTextBox}"/>
+                        
+                        <!-- MODO DE ENTRADA -->
+                        <Label Grid.Row="5" Grid.Column="0" Content="Modo Entrada" Style="{StaticResource estiloLabel}"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding ModoEntrada}" Style="{StaticResource estiloTextBox}"/>
+                    </Grid>
+                </GroupBox> 
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

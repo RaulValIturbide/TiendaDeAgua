@@ -16,7 +16,7 @@ namespace Utilidades
     /// </summary>
     public partial class BarraBotones : UserControl
     {
-        public EventHandler? NuevoClick;
+        public event RoutedEventHandler? NuevoClick;
         public EventHandler? ModificarClick;
         public EventHandler? GuardarClick;
         public EventHandler? CancelarClick;
@@ -27,6 +27,10 @@ namespace Utilidades
         {
             InitializeComponent();
         }
+
+
+
+
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
@@ -41,55 +45,68 @@ namespace Utilidades
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             GuardarClick?.Invoke(this, e);
-
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
             EliminarClick?.Invoke(this, e);
-
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             CancelarClick?.Invoke(this, e);
-
         }
 
-        public Visibility VisibilidadBotonNuevo
+
+        #region PROPIEDADES PUBLICAS 
+        public Visibility getVisibilidadBotonNuevo()
         {
-            get => (Visibility)GetValue(VisibilidadBotonNuevoProperty);
-            set => SetValue(VisibilidadBotonNuevoProperty, value);
+            return this.btnNuevo.Visibility;
         }
 
-        public static readonly DependencyProperty VisibilidadBotonNuevoProperty =
-            DependencyProperty.Register(
-                nameof(VisibilidadBotonNuevo),
-                typeof(Visibility),
-                typeof(BarraBotones),
-                new PropertyMetadata(Visibility.Visible, OnVisibilidadBotonNuevoChanged));
-        private static void OnVisibilidadBotonNuevoChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public void setVisibilidadBotonNuevo(Visibility visibilidad)
         {
-            var control = (BarraBotones)d;
-            control.btnNuevo.Visibility = (Visibility)e.NewValue;
+            this.btnNuevo.Visibility = visibilidad;
         }
 
-        public Visibility VisibilidadBotonModificar
+        public Visibility getVisibilidadBotonPermitirModificar()
         {
-            get => (Visibility)GetValue(VisibilidadBotonModificarProperty);
-            set => SetValue(VisibilidadBotonModificarProperty, value);
+            return this.btnModificar.Visibility;
         }
-        private static readonly DependencyProperty VisibilidadBotonModificarProperty =
-            DependencyProperty.Register(
-                nameof(VisibilidadBotonModificar), 
-                typeof(Visibility), 
-                typeof(BarraBotones), 
-                new PropertyMetadata(Visibility.Visible, OnVisibilidadBotonModificarChanged));    
-        private static void OnVisibilidadBotonModificarChanged(DependencyObject d,DependencyPropertyChangedEventArgs e)
+        public void setVisibilidadBotonPermitirModificar(Visibility visibilidad)
         {
-                var control = (BarraBotones)d;
-                control.btnModificar.Visibility = (Visibility)e.NewValue;
+            this.btnModificar.Visibility = visibilidad ;
         }
+
+        public Visibility getVisibilidadBotonGuardar()
+        {
+            return this.btnGuardar.Visibility;
+        }
+        public void setVisibilidadBotonGuardar(Visibility visibilidad)
+        {
+            this.btnGuardar.Visibility = visibilidad; 
+        }
+
+        public Visibility getVisibilidadBotonCancelar()
+        {
+            return this.btnCancelar.Visibility;
+        }
+        public void setVisibilidadBotonCancelar(Visibility visibilidad)
+        {
+            this.btnCancelar.Visibility = visibilidad;
+        }
+
+        public Visibility getVisibilidadBotonEliminar()
+        {
+            return this.btnEliminar.Visibility;
+        }
+        public void setVisibilidadBotonELiminar(Visibility visibilidad)
+        {
+            this.btnEliminar.Visibility = visibilidad;
+        }
+        #endregion
+
+
     }
 
 }

@@ -13,21 +13,23 @@ namespace ComunServicioAiron
             "airon.db"
         );
 
+        private static readonly string rutaBD = Path.GetFullPath("..\\..\\..\\data\\database\\airon.db");
+
         public static void ActivarConexion()
         {
-            string folder = Path.GetDirectoryName(dbPath);
+            string folder = Path.GetDirectoryName(rutaBD);
 
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
 
-            using var connection = new SqliteConnection($"Data Source={dbPath}");
+            using var connection = new SqliteConnection($"Data Source={rutaBD}");
             connection.Open();
 
             string sql = @"
                     CREATE TABLE IF NOT EXISTS usuarios (
                     ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                    nombre TEXT NOT NULL,
-                    contrasenya TEXT NOT NULL,
+                    Nombre TEXT NOT NULL,
+                    Contrasenya TEXT NOT NULL,
                     ModoEntrada INTEGER DEFAULT 0);
                 ";
 
@@ -45,7 +47,7 @@ namespace ComunServicioAiron
         {
             try
             {
-                using (var conexion = new SqliteConnection($"Data Source={dbPath}"))
+                using (var conexion = new SqliteConnection($"Data Source={rutaBD}"))
                 {
                     conexion.Open();
 
@@ -78,7 +80,7 @@ namespace ComunServicioAiron
         {
             try
             {
-                using (SqliteConnection conexion = new SqliteConnection($"Data Source={dbPath}"))
+                using (SqliteConnection conexion = new SqliteConnection($"Data Source={rutaBD}"))
                 {
                     conexion.Open();
 
@@ -109,7 +111,7 @@ namespace ComunServicioAiron
 
         public static T ObternerDatos<T>(string sql, SqliteParameter[] parametros) where T : new()
         {
-            using (var conexion = new SqliteConnection($"Data Source={dbPath}"))
+            using (var conexion = new SqliteConnection($"Data Source={rutaBD}"))
             {
                 conexion.Open();
 
@@ -143,6 +145,47 @@ namespace ComunServicioAiron
                     }
                 }
             }
+        }
+
+        public static List<T> ObtenerLista<T>(string sql, SqliteParameter[] parametros) where T : new()
+        {
+            var lista = new List<T>();
+
+            using (var conexion = new SqliteConnection($"Data Source={rutaBD}"))
+            {
+                conexion.Open();
+
+                using (var comando = new SqliteCommand(sql, conexion))
+                {
+                    if (parametros != null)
+                        comando.Parameters.AddRange(parametros);
+
+                    using (var reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            T entidad = new T();
+
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                string nombreColumna = reader.GetName(i);
+                                object valor = reader.GetValue(i);
+
+                                var propiedad = typeof(T).GetProperty(nombreColumna);
+
+                                if (propiedad != null && valor != DBNull.Value)
+                                {
+                                    propiedad.SetValue(entidad, Convert.ChangeType(valor, propiedad.PropertyType));
+                                }
+                            }
+
+                            lista.Add(entidad);
+                        }
+                    }
+                }
+            }
+
+            return lista;
         }
 
 

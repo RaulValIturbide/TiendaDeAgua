@@ -8,7 +8,9 @@
         WindowStartupLocation="CenterScreen"
         Icon="/data/img/AironIcono.png"
         mc:Ignorable="d"
-        Title="Pagina Principal" Height="800" Width="1000">
+        Title="Pagina Principal" 
+        Height="800" Width="1200"
+        MinHeight="800" MinWidth="1200">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -132,11 +134,17 @@
                         
                         <!-- TARJETA Administrador -->
                         <util:Tarjeta Grid.Row="2" Grid.Column="2" x:Name="TarjetaAdministrador"/>
+
+                        <Button Grid.Row="3" Grid.Column="3" Content="Cerrar Sesión" Margin="30" x:Name="btnCerrarSesion"
+                               Click="btnCerrarSesion_Click" />
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Visibility="Collapsed" x:Name="tbItemProveedor" Header="Proveedores">
+            <TabItem Visibility="Collapsed" x:Name="tbItemProveedor" Header="Proveedores" MouseRightButtonDown="TabItem_RightClick">
                 <Frame x:Name="frameProveedor" NavigationUIVisibility="Hidden"/>
+            </TabItem>
+            <TabItem Visibility="Collapsed" x:Name="tbItemAdministrador" Header="Administrador" MouseRightButtonDown="TabItem_RightClick" >
+                <Frame x:Name="frameAdministrador" NavigationUIVisibility="Hidden"/>
             </TabItem>
         </TabControl>
 

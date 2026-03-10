@@ -10,6 +10,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TiendaDeAgua.DTOs;
+using TiendaDeAgua.interfaz;
 using TiendaDeAgua.Tablas;
 using Utilidades.Recursos;
 
@@ -32,6 +33,7 @@ namespace TiendaDeAgua
             tbItemPaginaPrincipal.Visibility = Visibility.Collapsed;
 
             TarjetaProveedor.btnTarjeta += btnProveedor_Click;
+            TarjetaAdministrador.btnTarjeta += btnAdministrador_Click;
         }
 
         /// <summary>
@@ -86,7 +88,7 @@ namespace TiendaDeAgua
             ResultadoDTO res = new();
             
             res = UsuarioBD.UsuarioExistente(_UsuarioDTO);
-
+            
             if(res.codigoError == 0)
             {
                 _UsuarioDTO = UsuarioBD.AccesoUsuario(_UsuarioDTO); //Para cargar el modo de entrada tal vez mejorar si da tiempo(redundante)
@@ -138,24 +140,54 @@ namespace TiendaDeAgua
 
         private void btnProveedor_Click(object sender,EventArgs e)
         {
-            
-            if (!proveedoresActivo)
-            {
                 tbItemProveedor.Visibility = Visibility.Visible;
-                TiendaDeAgua.interfaz.Proveedor proveedor = new interfaz.Proveedor();
+                F1002_Proveedor proveedor = new F1002_Proveedor();
                 frameProveedor.Navigate(proveedor);
                 tabControlPrincipal.SelectedItem = tbItemProveedor;
-                proveedoresActivo = true;
-            }
-            else
+
+
+        }
+
+        private void btnAdministrador_Click(object sender,EventArgs e)
+        {
+            tbItemAdministrador.Visibility = Visibility.Visible;
+            F1001_Usuarios f1001 = new F1001_Usuarios();
+            frameAdministrador.Navigate(f1001);
+            tabControlPrincipal.SelectedItem = tbItemAdministrador;
+        }
+        /// <summary>
+        /// Usamos el click derecho para "cerrar" una pestaña del tabItem
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TabItem_RightClick(object sender,EventArgs e)
+        {
+            var tab = (TabItem)sender;
+            tab.Visibility = Visibility.Collapsed;
+            //Aquí miramos si el usuario ha cerrado la pagina que está mirando
+            //Si es así le devolvemos a la pagina principal
+            var tabSeleccionado = tabControlPrincipal.SelectedItem;
+            if(tabSeleccionado == tab)
             {
-                tabControlPrincipal.SelectedItem = tbItemProveedor;
+                tabControlPrincipal.SelectedItem = tbItemPaginaPrincipal;
             }
         }
         #endregion
 
-
         #endregion
+
+        private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            tabControlPrincipal.SelectedItem = tbItemLogin;
+
+            foreach(TabItem t in tabControlPrincipal.Items)
+            {
+                if(t != tbItemLogin)
+                {
+                    t.Visibility = Visibility.Collapsed;
+                }
+            }
+        }
     }
 
 }

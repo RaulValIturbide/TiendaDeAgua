@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TiendaDeAgua.interfaz
 {
     /// <summary>
-    /// Lógica de interacción para Proveedor.xaml
+    /// Lógica de interacción para F1002_Proveedor.xaml
     /// </summary>
-    public partial class Proveedor : Page
+    public partial class F1002_Proveedor : Page
     {
-        public Proveedor()
+        public F1002_Proveedor()
         {
             InitializeComponent();
         }

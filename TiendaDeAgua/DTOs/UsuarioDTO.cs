@@ -8,9 +8,12 @@ namespace TiendaDeAgua.DTOs
 {
     public class UsuarioDTO
     {
+        public int ID { get; set; }
         public string Nombre { get; set; } = string.Empty;
         public string Contrasenya { get; set; } = string.Empty;
         public int ModoEntrada { get; set; } = 0;
+
+        public bool EsNuevo { get; set; }
         public ResultadoDTO ValidarDatos()
         {
             StringBuilder mensajero = new StringBuilder();
