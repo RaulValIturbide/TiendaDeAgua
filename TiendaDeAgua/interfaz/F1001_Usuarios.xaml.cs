@@ -13,10 +13,14 @@ namespace TiendaDeAgua.interfaz
     {
         #region Propiedades Privadas
         private static UsuarioDTO _UsuarioDTO = new();
+        private static Frame _PaginaActiva = new();
         #endregion
         public F1001_Usuarios(UsuarioDTO usuarioActivo,Frame PaginaActiva)
         {
             InitializeComponent();
+
+            _UsuarioDTO = usuarioActivo;
+            _PaginaActiva = PaginaActiva;
 
             InicializacionSecundaria();
 
@@ -47,12 +51,12 @@ namespace TiendaDeAgua.interfaz
                     //dtg
                     dtgUsuarios.IsEnabled = false;
                     //BarraBotones
-                    //BarraBotones_Principal.VisibilidadBotonNuevo = Visibility.Collapsed;
-                    //BarraBotones_Principal.VisibilidadBotonModificar = Visibility.Collapsed;
-             
-                    //BarraBotones_Principal.setVisibilidadBotonCancelar(Visibility.Visible);
-                    //BarraBotones_Principal.setVisibilidadBotonGuardar(Visibility.Visible);
-                    //BarraBotones_Principal.setVisibilidadBotonELiminar(Visibility.Collapsed);
+                    BarraBotones_Principal.VisibilidadBotonNuevo = Visibility.Collapsed;
+                    BarraBotones_Principal.VisibilidadBotonModificar = Visibility.Collapsed;
+
+                    BarraBotones_Principal.VisibilidadBotonCancelar = Visibility.Visible;
+                    BarraBotones_Principal.VisibilidadBotonGuardar = Visibility.Visible;
+                    BarraBotones_Principal.VisibilidadBotonEliminar = Visibility.Collapsed;
 
                     //EXTRAS
                     _UsuarioDTO = new()
@@ -65,11 +69,12 @@ namespace TiendaDeAgua.interfaz
                     //dtg
                     dtgUsuarios.IsEnabled = false;
                     //BarraBotones
-                    //BarraBotones_Principal.setVisibilidadBotonNuevo(Visibility.Collapsed);
-                    //BarraBotones_Principal.setVisibilidadBotonPermitirModificar(Visibility.Collapsed);
-                    //BarraBotones_Principal.setVisibilidadBotonCancelar(Visibility.Visible);
-                    //BarraBotones_Principal.setVisibilidadBotonGuardar(Visibility.Visible);
-                    //BarraBotones_Principal.setVisibilidadBotonELiminar(Visibility.Visible);
+                    BarraBotones_Principal.VisibilidadBotonNuevo = Visibility.Collapsed;
+                    BarraBotones_Principal.VisibilidadBotonModificar = Visibility.Collapsed;
+
+                    BarraBotones_Principal.VisibilidadBotonCancelar = Visibility.Visible;
+                    BarraBotones_Principal.VisibilidadBotonGuardar = Visibility.Visible;
+                    BarraBotones_Principal.VisibilidadBotonEliminar = Visibility.Visible;
                     //EXTRAS
                     _UsuarioDTO.EsNuevo = false;
                     break;
@@ -77,18 +82,20 @@ namespace TiendaDeAgua.interfaz
                     //dtg
                     dtgUsuarios.IsEnabled = true;
                     //BarraBotones
-                    //BarraBotones_Principal.setVisibilidadBotonNuevo(Visibility.Visible);
-                    //BarraBotones_Principal.setVisibilidadBotonPermitirModificar(Visibility.Visible);
-                    //BarraBotones_Principal.setVisibilidadBotonCancelar(Visibility.Collapsed);
-                    //BarraBotones_Principal.setVisibilidadBotonGuardar(Visibility.Collapsed);
-                    //BarraBotones_Principal.setVisibilidadBotonELiminar(Visibility.Collapsed);
+                    BarraBotones_Principal.VisibilidadBotonNuevo = Visibility.Visible;
+                    BarraBotones_Principal.AparecerBotonModificar<UsuarioDTO>(dtgUsuarios);
+
+                    BarraBotones_Principal.VisibilidadBotonCancelar = Visibility.Collapsed;
+                    BarraBotones_Principal.VisibilidadBotonGuardar = Visibility.Collapsed;
+                    BarraBotones_Principal.VisibilidadBotonEliminar = Visibility.Collapsed;
                     break;
             }
         }
         #endregion
 
         #region Eventos
-        private void btnNuevo_Click(object sender, EventArgs e)
+
+        private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             EstadoFormulario(Utilidades.Recursos.EstadoFormulario.Nuevo);
         }
@@ -153,6 +160,17 @@ namespace TiendaDeAgua.interfaz
             }
             gbUsuario.DataContext = _UsuarioDTO;
         }
+      
+
+        private void BotonMenuPrincipal_btnMenuPrincipal(object sender, EventArgs e)
+        {
+            F1003_PaginaPrincipal f1003 = new(_UsuarioDTO,_PaginaActiva);
+            _PaginaActiva.Navigate(f1003);
+        }
+
         #endregion
+
+
+
     }
 }

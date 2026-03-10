@@ -13,13 +13,25 @@
             <RowDefinition Height="100"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="ADMINISTRACIÓN DE USUARIOS" 
+
+        <Grid Grid.Row="0" Background="{StaticResource AzulSecundarioAiron}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" Content="ADMINISTRACIÓN DE USUARIOS" 
                Background="{StaticResource AzulSecundarioAiron}"
                FontSize="30"
                FontFamily="Segoe UI Semibold"
                Foreground="{StaticResource BlancoAiron}"
-               VerticalContentAlignment="Center"
-               HorizontalContentAlignment="Center"/>
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"/>
+
+            <util:BotonMenuPrincipal Grid.Column="0" ToolTip="Vuelve al Menú Principal" 
+                                     btnMenuPrincipal="BotonMenuPrincipal_btnMenuPrincipal"
+                                     />
+        </Grid>
+        
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -41,7 +53,13 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <util:BarraBotones Grid.Row="0" Padding="5" VerticalAlignment="Center" x:Name="BarraBotones_Principal"/>
+                <util:BarraBotones Grid.Row="0" Padding="5" VerticalAlignment="Center" 
+                                   x:Name="BarraBotones_Principal"
+                                   NuevoClick="btnNuevo_Click"
+                                   ModificarClick="btnModificar_Click"
+                                   CancelarClick="btnCancelar_Click"
+                                   GuardarClick="btnGuardar_Click"
+                                   EliminarClick="btnEliminar_Click"/>
                 <GroupBox Header="MTO Usuarios" Grid.Row="1" x:Name="gbUsuario">
                     <Grid>
                         <Grid.RowDefinitions>

@@ -20,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="data\img\AironSplashScreenInversa.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="data\img\cancel.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

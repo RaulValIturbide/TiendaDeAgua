@@ -82,6 +82,30 @@ namespace Utilidades
 
         #endregion
 
+        #region Metodo Publico
+
+        /// <summary>
+        /// Este metodo tiene como objetivo establecer si se ve el boton "Modificar" si
+        /// no hay filas se oculta
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dataGrid"></param>
+        public void AparecerBotonModificar<T>(DataGrid dataGrid)
+        {
+            int contadorFilas = dataGrid.Items.Count;
+
+            if(contadorFilas > 0)
+            {
+                this.btnModificar.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.btnModificar.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        #endregion
+
 
     }
 
