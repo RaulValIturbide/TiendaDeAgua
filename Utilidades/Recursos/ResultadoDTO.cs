@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Utilidades.Recursos
+﻿namespace Utilidades.Recursos
 {
     /// <summary>
     /// Esta clase sirve como puente para referenciar si las consultas se han realizado con éxito o cualquier tipo de

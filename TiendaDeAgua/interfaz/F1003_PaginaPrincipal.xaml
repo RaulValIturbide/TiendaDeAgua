@@ -1,0 +1,61 @@
+﻿<Page x:Class="TiendaDeAgua.interfaz.F1003_PaginaPrincipal"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TiendaDeAgua.interfaz"
+      xmlns:util="clr-namespace:Utilidades;assembly=Utilidades"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="F1003_PaginaPrincipal">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid Background="{StaticResource AzulSecundarioAiron}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="lbSaludo" Style="{StaticResource estiloLabelSaludo}" Grid.Column="0"/>
+                <Image Source="/data/img/AironSplashScreenInversa.png" Grid.Column="1" HorizontalAlignment="Right"/>
+            </Grid>
+
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- TARJETA PROVEEDOR -->
+            <util:Tarjeta Grid.Row="1" Grid.Column="1" x:Name="TarjetaProveedor"/>
+
+            <!-- TARJETA INVENTARIO -->
+            <util:Tarjeta Grid.Row="1" Grid.Column="2" x:Name="TarjetaInventario" btnTarjeta="TarjetaInventario_btnTarjeta"/>
+
+            <!-- TARJETA CLIENTES -->
+            <util:Tarjeta Grid.Row="2" Grid.Column="1" x:Name="TarjetaCliente" btnTarjeta="TarjetaCliente_btnTarjeta"/>
+
+            <!-- TARJETA Administrador -->
+            <util:Tarjeta Grid.Row="2" Grid.Column="2" x:Name="TarjetaAdministrador" btnTarjeta="TarjetaAdministrador_btnTarjeta"/>
+
+            <Button Grid.Row="3" Grid.Column="3" Content="Cerrar Sesión" Margin="30" x:Name="btnCerrarSesion"
+                               Click="btnCerrarSesion_Click" />
+        </Grid>
+    </Grid>
+
+</Page>

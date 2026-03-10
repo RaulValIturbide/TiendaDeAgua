@@ -1,13 +1,5 @@
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Utilidades
 {
@@ -17,10 +9,10 @@ namespace Utilidades
     public partial class BarraBotones : UserControl
     {
         public event RoutedEventHandler? NuevoClick;
-        public EventHandler? ModificarClick;
-        public EventHandler? GuardarClick;
-        public EventHandler? CancelarClick;
-        public EventHandler? EliminarClick;
+        public event EventHandler? ModificarClick;
+        public event EventHandler? GuardarClick;
+        public event EventHandler? CancelarClick;
+        public event EventHandler? EliminarClick;
 
 
         public BarraBotones()
@@ -59,51 +51,35 @@ namespace Utilidades
 
 
         #region PROPIEDADES PUBLICAS 
-        public Visibility getVisibilidadBotonNuevo()
+
+        public Visibility VisibilidadBotonNuevo
         {
-            return this.btnNuevo.Visibility;
+            get { return this.btnNuevo.Visibility; }
+            set { this.btnNuevo.Visibility = value; }
         }
 
-        public void setVisibilidadBotonNuevo(Visibility visibilidad)
+        public Visibility VisibilidadBotonModificar
         {
-            this.btnNuevo.Visibility = visibilidad;
+            get { return this.btnModificar.Visibility; }
+            set { this.btnModificar.Visibility = value; }
         }
 
-        public Visibility getVisibilidadBotonPermitirModificar()
+        public Visibility VisibilidadBotonGuardar
         {
-            return this.btnModificar.Visibility;
+            get { return this.btnGuardar.Visibility; }
+            set { this.btnGuardar.Visibility = value; }
         }
-        public void setVisibilidadBotonPermitirModificar(Visibility visibilidad)
+        public Visibility VisibilidadBotonCancelar
         {
-            this.btnModificar.Visibility = visibilidad ;
+            get { return this.btnCancelar.Visibility; }
+            set { this.btnCancelar.Visibility = value; }
         }
-
-        public Visibility getVisibilidadBotonGuardar()
+        public Visibility VisibilidadBotonEliminar
         {
-            return this.btnGuardar.Visibility;
-        }
-        public void setVisibilidadBotonGuardar(Visibility visibilidad)
-        {
-            this.btnGuardar.Visibility = visibilidad; 
+            get { return this.btnEliminar.Visibility; }
+            set { this.btnEliminar.Visibility = value; }
         }
 
-        public Visibility getVisibilidadBotonCancelar()
-        {
-            return this.btnCancelar.Visibility;
-        }
-        public void setVisibilidadBotonCancelar(Visibility visibilidad)
-        {
-            this.btnCancelar.Visibility = visibilidad;
-        }
-
-        public Visibility getVisibilidadBotonEliminar()
-        {
-            return this.btnEliminar.Visibility;
-        }
-        public void setVisibilidadBotonELiminar(Visibility visibilidad)
-        {
-            this.btnEliminar.Visibility = visibilidad;
-        }
         #endregion
 
 

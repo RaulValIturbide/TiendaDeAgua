@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TiendaDeAgua.DTOs;
 using TiendaDeAgua.Tablas;
 using Utilidades.Recursos;
@@ -27,7 +14,7 @@ namespace TiendaDeAgua.interfaz
         #region Propiedades Privadas
         private static UsuarioDTO _UsuarioDTO = new();
         #endregion
-        public F1001_Usuarios()
+        public F1001_Usuarios(UsuarioDTO usuarioActivo,Frame PaginaActiva)
         {
             InitializeComponent();
 
@@ -41,22 +28,12 @@ namespace TiendaDeAgua.interfaz
         {
             EstadoFormulario(Utilidades.Recursos.EstadoFormulario.Consulta);
 
-            CargarDatos();
-
-            CargarBotones();
-        }
-        private void CargarBotones()
-        {
-            BarraBotones_Principal.NuevoClick += btnNuevo_Click;
-            BarraBotones_Principal.ModificarClick += btnModificar_Click;
-            BarraBotones_Principal.GuardarClick += btnGuardar_Click;
-            BarraBotones_Principal.CancelarClick += btnCancelar_Click;
-            BarraBotones_Principal.EliminarClick += btnEliminar_Click;
+            CargarDatos();         
         }
         private void CargarDatos()
         {
             dtgUsuarios.ItemsSource = UsuarioBD.ListaUsuario();
-            if(dtgUsuarios.Items.Count > 0)
+            if (dtgUsuarios.Items.Count > 0)
             {
                 dtgUsuarios.SelectedItem = dtgUsuarios.Items.GetItemAt(0);
             }
@@ -64,17 +41,18 @@ namespace TiendaDeAgua.interfaz
 
         private void EstadoFormulario(EstadoFormulario estadoFormulario)
         {
-            switch(estadoFormulario)
+            switch (estadoFormulario)
             {
                 case Utilidades.Recursos.EstadoFormulario.Nuevo:
                     //dtg
                     dtgUsuarios.IsEnabled = false;
                     //BarraBotones
-                    BarraBotones_Principal.setVisibilidadBotonNuevo(Visibility.Collapsed);
-                    BarraBotones_Principal.setVisibilidadBotonPermitirModificar(Visibility.Collapsed);
-                    BarraBotones_Principal.setVisibilidadBotonCancelar(Visibility.Visible);
-                    BarraBotones_Principal.setVisibilidadBotonGuardar(Visibility.Visible);
-                    BarraBotones_Principal.setVisibilidadBotonELiminar(Visibility.Collapsed);
+                    //BarraBotones_Principal.VisibilidadBotonNuevo = Visibility.Collapsed;
+                    //BarraBotones_Principal.VisibilidadBotonModificar = Visibility.Collapsed;
+             
+                    //BarraBotones_Principal.setVisibilidadBotonCancelar(Visibility.Visible);
+                    //BarraBotones_Principal.setVisibilidadBotonGuardar(Visibility.Visible);
+                    //BarraBotones_Principal.setVisibilidadBotonELiminar(Visibility.Collapsed);
 
                     //EXTRAS
                     _UsuarioDTO = new()
@@ -87,11 +65,11 @@ namespace TiendaDeAgua.interfaz
                     //dtg
                     dtgUsuarios.IsEnabled = false;
                     //BarraBotones
-                    BarraBotones_Principal.setVisibilidadBotonNuevo(Visibility.Collapsed);
-                    BarraBotones_Principal.setVisibilidadBotonPermitirModificar(Visibility.Collapsed);
-                    BarraBotones_Principal.setVisibilidadBotonCancelar(Visibility.Visible);
-                    BarraBotones_Principal.setVisibilidadBotonGuardar(Visibility.Visible);
-                    BarraBotones_Principal.setVisibilidadBotonELiminar(Visibility.Visible);
+                    //BarraBotones_Principal.setVisibilidadBotonNuevo(Visibility.Collapsed);
+                    //BarraBotones_Principal.setVisibilidadBotonPermitirModificar(Visibility.Collapsed);
+                    //BarraBotones_Principal.setVisibilidadBotonCancelar(Visibility.Visible);
+                    //BarraBotones_Principal.setVisibilidadBotonGuardar(Visibility.Visible);
+                    //BarraBotones_Principal.setVisibilidadBotonELiminar(Visibility.Visible);
                     //EXTRAS
                     _UsuarioDTO.EsNuevo = false;
                     break;
@@ -99,33 +77,33 @@ namespace TiendaDeAgua.interfaz
                     //dtg
                     dtgUsuarios.IsEnabled = true;
                     //BarraBotones
-                    BarraBotones_Principal.setVisibilidadBotonNuevo(Visibility.Visible);
-                    BarraBotones_Principal.setVisibilidadBotonPermitirModificar(Visibility.Visible);
-                    BarraBotones_Principal.setVisibilidadBotonCancelar(Visibility.Collapsed);
-                    BarraBotones_Principal.setVisibilidadBotonGuardar(Visibility.Collapsed);
-                    BarraBotones_Principal.setVisibilidadBotonELiminar(Visibility.Collapsed);
+                    //BarraBotones_Principal.setVisibilidadBotonNuevo(Visibility.Visible);
+                    //BarraBotones_Principal.setVisibilidadBotonPermitirModificar(Visibility.Visible);
+                    //BarraBotones_Principal.setVisibilidadBotonCancelar(Visibility.Collapsed);
+                    //BarraBotones_Principal.setVisibilidadBotonGuardar(Visibility.Collapsed);
+                    //BarraBotones_Principal.setVisibilidadBotonELiminar(Visibility.Collapsed);
                     break;
             }
         }
         #endregion
 
         #region Eventos
-        private void btnNuevo_Click(object sender,EventArgs e)
+        private void btnNuevo_Click(object sender, EventArgs e)
         {
             EstadoFormulario(Utilidades.Recursos.EstadoFormulario.Nuevo);
         }
-        private void btnModificar_Click(object sender,EventArgs e)
+        private void btnModificar_Click(object sender, EventArgs e)
         {
             EstadoFormulario(Utilidades.Recursos.EstadoFormulario.Edicion);
         }
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if(_UsuarioDTO != null)
+            if (_UsuarioDTO != null)
             {
                 ResultadoDTO res = new();
                 res = UsuarioBD.GuardarDatos(_UsuarioDTO);
 
-                if(res.codigoError == 0)
+                if (res.codigoError == 0)
                 {
                     HerramientaVentana.Show(res.mensajeInformacion);
                     CargarDatos();
@@ -145,18 +123,18 @@ namespace TiendaDeAgua.interfaz
         }
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if(_UsuarioDTO != null)
+            if (_UsuarioDTO != null)
             {
                 ResultadoDTO res = new();
                 res = UsuarioBD.BorrarFila(_UsuarioDTO);
 
-                if(res.codigoError == 0)
+                if (res.codigoError == 0)
                 {
                     HerramientaVentana.Show(res.mensajeInformacion);
                     CargarDatos();
                     EstadoFormulario(Utilidades.Recursos.EstadoFormulario.Consulta);
                 }
-                else 
+                else
                 {
                     HerramientaVentana.MostrarError(res);
                 }
@@ -165,7 +143,7 @@ namespace TiendaDeAgua.interfaz
         private void dtgUsuarios_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var filaSeleccionada = (UsuarioDTO)dtgUsuarios.SelectedItem;
-            if(filaSeleccionada != null)
+            if (filaSeleccionada != null)
             {
                 _UsuarioDTO = (UsuarioDTO)dtgUsuarios.SelectedItem;
             }

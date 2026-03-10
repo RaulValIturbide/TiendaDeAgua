@@ -1,9 +1,4 @@
 ﻿using Microsoft.Data.Sqlite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TiendaDeAgua.DTOs;
 using Utilidades.Recursos;
 
@@ -19,34 +14,12 @@ namespace TiendaDeAgua.Tablas
 
             return ComunServicioAiron.Conectar.ObtenerLista<UsuarioDTO>(sql, null);
         }
-        public static ResultadoDTO UsuarioExistente(UsuarioDTO pUsuarioDTO) 
-        {
-            ResultadoDTO res = new();
-            res = pUsuarioDTO.ValidarDatos();
-            if(res.codigoError == 0)
-            { 
-                string sql = " SELECT Count(*) " +
-                             " FROM usuarios " +
-                             " WHERE Nombre = @pNombre " +
-                             " AND Contrasenya = @pContrasenya ";
 
-                var parametros = new SqliteParameter[]
-                {
-                    new SqliteParameter("@pContrasenya",pUsuarioDTO.Contrasenya),
-                    new SqliteParameter("@pNombre",pUsuarioDTO.Nombre)
-                };
-
-                int filasEncontradas = ComunServicioAiron.Conectar.EjecutarEscalar<int>(sql, parametros);
-
-                if(filasEncontradas <= 0)
-                {
-                    res.codigoError = 104;
-                    res.mensajeInformacion = $"Usuario o contraseña incorrecta.{Environment.NewLine}Registrese primero si aún no lo está.";
-                }
-            }
-            return res;
-        }
-
+        /// <summary>
+        /// Busca el usuario con los datos dados en la lista de usuarios de la BBDD
+        /// </summary>
+        /// <param name="pUsuarioDTO"></param>
+        /// <returns></returns>
         public static UsuarioDTO AccesoUsuario(UsuarioDTO pUsuarioDTO)
         {
             string sql = " SELECT ID,Nombre,Contrasenya,ModoEntrada " +
@@ -67,9 +40,9 @@ namespace TiendaDeAgua.Tablas
         {
             ResultadoDTO res = pUsuarioDTO.ValidarDatos();
 
-            if(res.codigoError == 0)
+            if (res.codigoError == 0)
             {
-                if(pUsuarioDTO.EsNuevo)
+                if (pUsuarioDTO.EsNuevo)
                 {
                     res = AltaFila(pUsuarioDTO);
                 }
@@ -100,7 +73,7 @@ namespace TiendaDeAgua.Tablas
 
             int filasAfectadas = ComunServicioAiron.Conectar.EjecutarNonQuery(sql, parametros);
 
-            if(filasAfectadas > 0)
+            if (filasAfectadas > 0)
             {
                 res.mensajeInformacion = $"Usuario\"{pUsuarioDTO.Nombre}\" modificado con éxito.";
             }
@@ -110,7 +83,7 @@ namespace TiendaDeAgua.Tablas
                 res.mensajeInformacion = $"Error al modificar el usuario.{Environment.NewLine}Consulte Base de Datos.";
             }
             return res;
-            
+
         }
         public static ResultadoDTO AltaFila(UsuarioDTO pUsuarioDTO)
         {
@@ -118,7 +91,7 @@ namespace TiendaDeAgua.Tablas
 
             res = pUsuarioDTO.ValidarDatos();
 
-            if(res.codigoError == 0)
+            if (res.codigoError == 0)
             {
                 string sql = " INSERT INTO usuarios(Nombre,Contrasenya) " +
                              " VALUES(@pNombre,@pContrasenya) ";
@@ -131,7 +104,7 @@ namespace TiendaDeAgua.Tablas
 
                 int filasAfectadas = ComunServicioAiron.Conectar.EjecutarNonQuery(sql, parametros);
 
-                if(filasAfectadas > 0)
+                if (filasAfectadas > 0)
                 {
                     res.mensajeInformacion = "Usuario dado de alta con éxito!";
                 }
@@ -169,6 +142,6 @@ namespace TiendaDeAgua.Tablas
             }
             return res;
         }
-           
+
     }
 }

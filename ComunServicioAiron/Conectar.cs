@@ -1,6 +1,4 @@
 ﻿using Microsoft.Data.Sqlite;
-using System;
-using System.IO;
 
 namespace ComunServicioAiron
 {
@@ -96,14 +94,14 @@ namespace ComunServicioAiron
                         if (valor == null || valor == DBNull.Value)
                         {
                             return default(T);
-                        }                            
+                        }
 
                         return (T)Convert.ChangeType(valor, typeof(T));
                     }
                 }
             }
             catch (Exception ex)
-            { 
+            {
                 return default(T);
             }
         }
@@ -121,7 +119,7 @@ namespace ComunServicioAiron
                     {
                         comando.Parameters.AddRange(parametros);
                     }
-                    
+
                     using (var reader = comando.ExecuteReader())
                     {
                         if (!reader.Read())
