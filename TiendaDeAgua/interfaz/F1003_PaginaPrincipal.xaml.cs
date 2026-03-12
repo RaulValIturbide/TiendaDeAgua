@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TiendaDeAgua.DTOs;
+using Utilidades.Recursos;
 
 namespace TiendaDeAgua.interfaz
 {
@@ -21,13 +22,17 @@ namespace TiendaDeAgua.interfaz
     /// </summary>
     public partial class F1003_PaginaPrincipal : Page
     {
-        UsuarioDTO _UsuarioDTO = new();
+        int ModoEntrada;
         Frame _PaginaActiva = new();
-        public F1003_PaginaPrincipal(UsuarioDTO usuarioActivo,Frame PaginaActiva)
+        
+        public F1003_PaginaPrincipal(Frame PaginaActiva)
         {
             InitializeComponent();
-            _UsuarioDTO = usuarioActivo; //Cargamos el usuario
+           
             _PaginaActiva = PaginaActiva;
+            Sesion.llaves.TryGetValue("ModoEntrada", out string modoEntrada); //Recibimos el modoEntrada del usuario activo
+            ModoEntrada = Convert.ToInt32(modoEntrada);
+            
 
             CargarTarjetasMenu(); //Cargamos las tarjetillas
         }
@@ -35,6 +40,7 @@ namespace TiendaDeAgua.interfaz
         private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)
         {
             F1000_Login login = new(_PaginaActiva);
+            Sesion.RenovarLlaves();
             _PaginaActiva.Navigate(login);
             
         }
@@ -45,7 +51,7 @@ namespace TiendaDeAgua.interfaz
         /// </summary>
         private void CargarTarjetasMenu()
         {
-            TarjetaDTO proveedores = new TarjetaDTO() { Nombre = "PROVEEDORES" };
+            TarjetaDTO proveedores = new TarjetaDTO() { Nombre = "PEDIDOS" };
             TarjetaDTO inventario = new TarjetaDTO() { Nombre = "INVENTARIO" };
             TarjetaDTO clientes = new TarjetaDTO() { Nombre = "CLIENTES" };
 
@@ -54,7 +60,7 @@ namespace TiendaDeAgua.interfaz
             TarjetaInventario.DataContext = inventario;
             TarjetaCliente.DataContext = clientes;
 
-            if (_UsuarioDTO.ModoEntrada == 1)
+            if (ModoEntrada == 1)
             {
                 //Esto lo hacemos si es el administrador
                 TarjetaAdministrador.Visibility = Visibility.Visible;
@@ -70,7 +76,7 @@ namespace TiendaDeAgua.interfaz
 
         private void TarjetaAdministrador_btnTarjeta(object sender, EventArgs e)
         {
-            F1001_Usuarios f1001 = new(_UsuarioDTO,_PaginaActiva);
+            F1001_Usuarios f1001 = new(_PaginaActiva);
             _PaginaActiva.Navigate(f1001);
             
         }
@@ -82,7 +88,10 @@ namespace TiendaDeAgua.interfaz
 
         private void TarjetaInventario_btnTarjeta(object sender, EventArgs e)
         {
+            F1002_Producto f1002 = new(_PaginaActiva);
+            _PaginaActiva.Navigate(f1002);
 
+            
         }
     }
 }

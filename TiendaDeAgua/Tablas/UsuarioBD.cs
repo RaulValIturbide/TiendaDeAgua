@@ -85,7 +85,7 @@ namespace TiendaDeAgua.Tablas
             return res;
 
         }
-        public static ResultadoDTO AltaFila(UsuarioDTO pUsuarioDTO)
+        private static ResultadoDTO AltaFila(UsuarioDTO pUsuarioDTO)
         {
             ResultadoDTO res = new();
 

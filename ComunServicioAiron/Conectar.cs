@@ -4,14 +4,27 @@ namespace ComunServicioAiron
 {
     public class Conectar
     {
-        private static readonly string dbPath = Path.Combine(
+
+#if DEBUG
+
+        private static readonly string rutaBD = Path.Combine(
             AppDomain.CurrentDomain.BaseDirectory,
-            "data",
-            "database",
+           "data",
+           "database",
             "airon.db"
         );
 
-        private static readonly string rutaBD = Path.GetFullPath("..\\..\\..\\data\\database\\airon.db");
+
+#else
+        private static readonly string rutaBD = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "Airon",
+            "airon.db"
+        );
+#endif
+
+
+        // private static readonly string rutaBD = Path.GetFullPath("..\\..\\..\\data\\database\\airon.db");
 
         public static void ActivarConexion()
         {
@@ -20,19 +33,32 @@ namespace ComunServicioAiron
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
 
+            // Ruta de la BD incluida en el instalador
+            string rutaOrigen = Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                "data",
+                "database",
+                "airon.db"
+            );
+
+            // Si la BD no existe en AppData, la copiamos desde el instalador
+            if (!File.Exists(rutaBD) && File.Exists(rutaOrigen))
+            {
+                File.Copy(rutaOrigen, rutaBD,overwrite: true);
+            }
+
             using var connection = new SqliteConnection($"Data Source={rutaBD}");
             connection.Open();
 
-            string sql = @"
-                    CREATE TABLE IF NOT EXISTS usuarios (
+            string sql = @"CREATE TABLE IF NOT EXISTS usuarios (
                     ID INTEGER PRIMARY KEY AUTOINCREMENT,
                     Nombre TEXT NOT NULL,
+                    Email Text NULL,
                     Contrasenya TEXT NOT NULL,
-                    ModoEntrada INTEGER DEFAULT 0);
-                ";
+                    ModoEntrada INTEGER DEFAULT 0);";
 
-            using var command = new SqliteCommand(sql, connection);
-            command.ExecuteNonQuery();
+            EjecutarNonQuery(sql, null);
+            
         }
 
         /// <summary>

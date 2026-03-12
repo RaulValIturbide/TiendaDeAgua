@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="VentanaError" Height="300" Width="500" ResizeMode="NoResize"
         >
-    <Grid>
+    <Grid KeyDown="BtnAceptar_KeyDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="3*"/>

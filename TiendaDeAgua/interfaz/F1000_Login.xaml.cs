@@ -18,7 +18,9 @@ namespace TiendaDeAgua.interfaz
             InitializeComponent();
             dtgDatosUsuario.DataContext = _UsuarioDTO;
             _PantallaActiva = PantallaActiva;
+            txtNombre.Focus();//Mejora de accesibilidad, el usuario empieza con el textbox focuseado para escribir su nombre
         }
+
 
         private void btnAcceder_Click(object sender, RoutedEventArgs e)
         {
@@ -28,10 +30,11 @@ namespace TiendaDeAgua.interfaz
             {
                 //El usuario existe y por lo tanto se le permite pasar
                 _UsuarioDTO = usuario;
-                F1003_PaginaPrincipal f1003 = new(_UsuarioDTO,_PantallaActiva);
+                //Cargamos datos en el diccionario para tenerlo a mano durante la app
+                Sesion.llaves.Add("ModoEntrada", usuario.ModoEntrada.ToString());
+                Sesion.llaves.Add("Nombre", usuario.Nombre);
+                F1003_PaginaPrincipal f1003 = new(_PantallaActiva);
                 _PantallaActiva.Navigate(f1003);
-                
-
             }
             else
             {
@@ -44,7 +47,18 @@ namespace TiendaDeAgua.interfaz
 
         private void btnRegistrar_Click(object sender, RoutedEventArgs e)
         {
+            _UsuarioDTO.EsNuevo = true;
+            ResultadoDTO res = UsuarioBD.GuardarDatos(_UsuarioDTO);
 
+            if(res.codigoError == 0)
+            {
+                HerramientaVentana.Show(res.mensajeInformacion);
+
+            }
+            else
+            {
+                HerramientaVentana.MostrarError(res);
+            }
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
@@ -63,6 +77,14 @@ namespace TiendaDeAgua.interfaz
         {
             txtContra.Visibility = Visibility.Collapsed;
             cajaContra.Visibility = Visibility.Visible;
+        }
+
+        private void BotonEnter_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if(e.Key == System.Windows.Input.Key.Enter)
+            {
+                btnAcceder_Click(sender,e);
+            }
         }
     }
 }
