@@ -4,14 +4,21 @@ namespace ComunServicioAiron
 {
     public class Conectar
     {
-        private static readonly string dbPath = Path.Combine(
-            AppDomain.CurrentDomain.BaseDirectory,
-            "data",
-            "database",
-            "airon.db"
-        );
+        //private static  string rutaBD = Path.Combine(
+        //    AppDomain.CurrentDomain.BaseDirectory,
+        //    "data",
+        //    "database",
+        //    "airon.db"
+        //);
 
-        private static readonly string rutaBD = Path.GetFullPath("..\\..\\..\\data\\database\\airon.db");
+        private static string rutaBD = Path.Combine(
+    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+    "Airon",
+    "airon.db"
+);
+
+
+        //private static readonly string rutaBD = Path.GetFullPath("..\\..\\..\\data\\database\\airon.db");
 
         public static void ActivarConexion()
         {
