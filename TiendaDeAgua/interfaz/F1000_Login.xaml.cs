@@ -12,13 +12,12 @@ namespace TiendaDeAgua.interfaz
     public partial class F1000_Login : Page
     {
         UsuarioDTO _UsuarioDTO = new();
-        Frame _PantallaActiva;
-        public F1000_Login(Frame? PantallaActiva)
+        public F1000_Login()
         {
             InitializeComponent();
             dtgDatosUsuario.DataContext = _UsuarioDTO;
-            _PantallaActiva = PantallaActiva;
             txtNombre.Focus();//Mejora de accesibilidad, el usuario empieza con el textbox focuseado para escribir su nombre
+           
         }
 
 
@@ -33,8 +32,8 @@ namespace TiendaDeAgua.interfaz
                 //Cargamos datos en el diccionario para tenerlo a mano durante la app
                 Sesion.llaves.Add("ModoEntrada", usuario.ModoEntrada.ToString());
                 Sesion.llaves.Add("Nombre", usuario.Nombre);
-                F1003_PaginaPrincipal f1003 = new(_PantallaActiva);
-                _PantallaActiva.Navigate(f1003);
+                F1003_PaginaPrincipal f1003 = new();
+                Sesion.GestorPantalla().Navigate(f1003);
             }
             else
             {

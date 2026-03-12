@@ -15,11 +15,9 @@ namespace TiendaDeAgua.interfaz
         private static UsuarioDTO _UsuarioDTO = new();
         private static Frame _PaginaActiva = new();
         #endregion
-        public F1001_Usuarios(Frame PaginaActiva)
+        public F1001_Usuarios()
         {
             InitializeComponent();
-
-            _PaginaActiva = PaginaActiva;
 
             InicializacionSecundaria();
 
@@ -160,17 +158,20 @@ namespace TiendaDeAgua.interfaz
             BarraBotones_Principal.AparecerBotonModificar<UsuarioDTO>(dtgUsuarios);
             gbUsuario.DataContext = _UsuarioDTO;
         }
-      
-
+     
         private void BotonMenuPrincipal_btnMenuPrincipal(object sender, EventArgs e)
         {
-            F1003_PaginaPrincipal f1003 = new(_PaginaActiva);
-            _PaginaActiva.Navigate(f1003);
+            F1003_PaginaPrincipal f1003 = new();
+            Sesion.GestorPantalla().Navigate(f1003);
         }
+
+
 
         #endregion
 
-
-
+        private void Page_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Sesion.VolverAtras();
+        }
     }
 }

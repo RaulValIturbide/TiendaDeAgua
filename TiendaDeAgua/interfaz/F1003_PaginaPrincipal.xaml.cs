@@ -23,25 +23,22 @@ namespace TiendaDeAgua.interfaz
     public partial class F1003_PaginaPrincipal : Page
     {
         int ModoEntrada;
-        Frame _PaginaActiva = new();
         
-        public F1003_PaginaPrincipal(Frame PaginaActiva)
+        public F1003_PaginaPrincipal()
         {
             InitializeComponent();
            
-            _PaginaActiva = PaginaActiva;
-            Sesion.llaves.TryGetValue("ModoEntrada", out string modoEntrada); //Recibimos el modoEntrada del usuario activo
+            Sesion.llaves.TryGetValue("ModoEntrada", out string? modoEntrada); //Recibimos el modoEntrada del usuario activo
             ModoEntrada = Convert.ToInt32(modoEntrada);
-            
 
             CargarTarjetasMenu(); //Cargamos las tarjetillas
         }
 
         private void btnCerrarSesion_Click(object sender, RoutedEventArgs e)
         {
-            F1000_Login login = new(_PaginaActiva);
+            F1000_Login login = new();
             Sesion.RenovarLlaves();
-            _PaginaActiva.Navigate(login);
+            Sesion.GestorPantalla().Navigate(login);
             
         }
 
@@ -76,8 +73,8 @@ namespace TiendaDeAgua.interfaz
 
         private void TarjetaAdministrador_btnTarjeta(object sender, EventArgs e)
         {
-            F1001_Usuarios f1001 = new(_PaginaActiva);
-            _PaginaActiva.Navigate(f1001);
+            F1001_Usuarios f1001 = new();
+            Sesion.GestorPantalla().Navigate(f1001);
             
         }
 
@@ -88,10 +85,8 @@ namespace TiendaDeAgua.interfaz
 
         private void TarjetaInventario_btnTarjeta(object sender, EventArgs e)
         {
-            F1002_Producto f1002 = new(_PaginaActiva);
-            _PaginaActiva.Navigate(f1002);
-
-            
+            F1002_Producto f1002 = new();
+            Sesion.GestorPantalla().Navigate(f1002);
         }
     }
 }

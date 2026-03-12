@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using TiendaDeAgua.DTOs;
 using TiendaDeAgua.interfaz;
+using Utilidades.Recursos;
 
 namespace TiendaDeAgua
 {
@@ -16,7 +17,10 @@ namespace TiendaDeAgua
         {
             InitializeComponent();
             ComunServicioAiron.Conectar.ActivarConexion();
-            F1000_Login f1000 = new(framePantalla);
+            Sesion.GuardarFrame(framePantalla);
+            
+            F1000_Login f1000 = new();
+
 
             framePantalla.Navigate(f1000);
         }
