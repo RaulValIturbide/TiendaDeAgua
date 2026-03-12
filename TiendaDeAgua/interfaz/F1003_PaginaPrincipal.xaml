@@ -42,16 +42,20 @@
             </Grid.ColumnDefinitions>
 
             <!-- TARJETA PROVEEDOR -->
-            <util:Tarjeta Grid.Row="1" Grid.Column="1" x:Name="TarjetaProveedor"/>
+            <util:Tarjeta Grid.Row="1" Grid.Column="1" x:Name="TarjetaProveedor" 
+                          IsTabStop="True"/>
 
             <!-- TARJETA INVENTARIO -->
-            <util:Tarjeta Grid.Row="1" Grid.Column="2" x:Name="TarjetaInventario" btnTarjeta="TarjetaInventario_btnTarjeta"/>
+            <util:Tarjeta Grid.Row="1" Grid.Column="2" x:Name="TarjetaInventario" btnTarjeta="TarjetaInventario_btnTarjeta"
+                          IsTabStop="True"/>
 
             <!-- TARJETA CLIENTES -->
-            <util:Tarjeta Grid.Row="2" Grid.Column="1" x:Name="TarjetaCliente" btnTarjeta="TarjetaCliente_btnTarjeta"/>
+            <util:Tarjeta Grid.Row="2" Grid.Column="1" x:Name="TarjetaCliente" btnTarjeta="TarjetaCliente_btnTarjeta"
+                          IsTabStop="True"/>
 
             <!-- TARJETA Administrador -->
-            <util:Tarjeta Grid.Row="2" Grid.Column="2" x:Name="TarjetaAdministrador" btnTarjeta="TarjetaAdministrador_btnTarjeta"/>
+            <util:Tarjeta Grid.Row="2" Grid.Column="2" x:Name="TarjetaAdministrador" btnTarjeta="TarjetaAdministrador_btnTarjeta"
+                          IsTabStop="True"/>
 
             <Button Grid.Row="3" Grid.Column="3" Content="Cerrar Sesión" Margin="30" x:Name="btnCerrarSesion"
                                Click="btnCerrarSesion_Click" />

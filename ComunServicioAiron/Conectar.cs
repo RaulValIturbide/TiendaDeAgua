@@ -2,6 +2,7 @@
 
 namespace ComunServicioAiron
 {
+    
     public class Conectar
     {
 
@@ -212,13 +213,45 @@ namespace ComunServicioAiron
             return lista;
         }
 
+        /// <summary>
+        /// Vamos a crear el combo dto para los combobox
+        /// TODO : Mejorar esto con mas datos si da tiempo 12/03/2026
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="parametros"></param>
+        /// <returns></returns>
+        public static List<ComboListDTO> ObtenerCombo(string sql, SqliteParameter[] parametros)
+        {
+            //Creamos lista para devolverla
+            List<ComboListDTO> lista = new List<ComboListDTO>();
+            using(SqliteConnection conexion = new SqliteConnection($"Data Source={rutaBD}"))
+            {
+                //Conexión
+                conexion.Open();
 
-
-
-
-
-
-
+                using(SqliteCommand comando = new SqliteCommand(sql,conexion))
+                {
+                    //Añadimos los parametros si los hubiera
+                    if(parametros != null)
+                    {
+                        comando.Parameters.AddRange(parametros);
+                    }
+                    using (SqliteDataReader reader = comando.ExecuteReader())
+                    {
+                        //Ahora leemos  y vamos creando los combolISTdto
+                        while (reader.Read())
+                        {
+                            lista.Add(new ComboListDTO
+                            {
+                                Identificador = reader.GetInt32(0),
+                                Texto = reader.GetString(1)
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
 
 
     }

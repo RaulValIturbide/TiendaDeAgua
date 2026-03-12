@@ -16,7 +16,6 @@ namespace Utilidades.Recursos
     /// </summary>
     public class Sesion
     {
-
         //Aqui guardamos datos importantes, ahora mismo solo se guarda el nombre y modo entrada del usuario, pero es escalable
         public static Dictionary<string,string> llaves = new();
         public static Frame? NavegadorPantallas;
@@ -59,9 +58,5 @@ namespace Utilidades.Recursos
                 NavegadorPantallas.NavigationService.GoBack();
             }          
         }
-
-
-
-        
     }
 }

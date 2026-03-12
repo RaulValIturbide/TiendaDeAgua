@@ -45,7 +45,6 @@
                     <DataGridTextColumn Header="Precio" Binding="{Binding Precio}" Width="1*"/>
                     <DataGridTextColumn Header="Stock" Binding="{Binding Stock}" Width="1*"/>
                     <DataGridTextColumn Header="Categoria" Binding="{Binding Categoria}" Width="1*"/>
-                    
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -94,7 +93,8 @@
                         <!-- CATEGORIA -->
                         <Label Grid.Row="7" Grid.Column="0" Content="Categoria" Style="{StaticResource estiloLabel}"/>
                         <ComboBox Grid.Row="7" Grid.Column="1" DisplayMemberPath="Texto" SelectedValuePath="Identificador"
-                                  SelectedValue="ID" Style="{StaticResource estiloComboBox}"/>
+                                  SelectedValue="{Binding CategoriaID}" Style="{StaticResource estiloComboBox}"
+                                  x:Name="cboCategoria"/>
                     </Grid>
                 </GroupBox>
             </Grid>
