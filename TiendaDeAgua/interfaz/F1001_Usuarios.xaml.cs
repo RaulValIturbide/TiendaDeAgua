@@ -15,11 +15,10 @@ namespace TiendaDeAgua.interfaz
         private static UsuarioDTO _UsuarioDTO = new();
         private static Frame _PaginaActiva = new();
         #endregion
-        public F1001_Usuarios(UsuarioDTO usuarioActivo,Frame PaginaActiva)
+        public F1001_Usuarios(Frame PaginaActiva)
         {
             InitializeComponent();
 
-            _UsuarioDTO = usuarioActivo;
             _PaginaActiva = PaginaActiva;
 
             InicializacionSecundaria();
@@ -158,13 +157,14 @@ namespace TiendaDeAgua.interfaz
             {
                 _UsuarioDTO = new() { EsNuevo = true };
             }
+            BarraBotones_Principal.AparecerBotonModificar<UsuarioDTO>(dtgUsuarios);
             gbUsuario.DataContext = _UsuarioDTO;
         }
       
 
         private void BotonMenuPrincipal_btnMenuPrincipal(object sender, EventArgs e)
         {
-            F1003_PaginaPrincipal f1003 = new(_UsuarioDTO,_PaginaActiva);
+            F1003_PaginaPrincipal f1003 = new(_PaginaActiva);
             _PaginaActiva.Navigate(f1003);
         }
 

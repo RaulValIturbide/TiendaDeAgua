@@ -8,6 +8,8 @@ namespace Utilidades
     /// </summary>
     public partial class BarraBotones : UserControl
     {
+        //Convertimos los botones en eventos, de esta forma podemos
+        //darles uso desde el xaml para que no sea tan engorroso.
         public event RoutedEventHandler? NuevoClick;
         public event EventHandler? ModificarClick;
         public event EventHandler? GuardarClick;
@@ -19,9 +21,6 @@ namespace Utilidades
         {
             InitializeComponent();
         }
-
-
-
 
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
@@ -85,7 +84,7 @@ namespace Utilidades
         #region Metodo Publico
 
         /// <summary>
-        /// Este metodo tiene como objetivo establecer si se ve el boton "Modificar" si
+        /// Este metodo tiene como objetivo establecer si se ve el boton "Modificar".Si
         /// no hay filas se oculta
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -93,7 +92,6 @@ namespace Utilidades
         public void AparecerBotonModificar<T>(DataGrid dataGrid)
         {
             int contadorFilas = dataGrid.Items.Count;
-
             if(contadorFilas > 0)
             {
                 this.btnModificar.Visibility = Visibility.Visible;

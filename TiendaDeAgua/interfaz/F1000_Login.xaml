@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="F1000_Login">
 
-    <Grid>
+    <Grid KeyDown="BotonEnter_KeyDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
@@ -37,7 +37,7 @@
 
             <!-- NOMBRE -->
             <Label Grid.Row="0" Grid.Column="1" Content="Nombre Usuario" Style="{StaticResource estiloLabel}"/>
-            <TextBox  Grid.Row="0" Grid.Column="2" Text="{Binding Nombre}" Style="{StaticResource estiloTextBox}"/>
+            <TextBox  Grid.Row="0" x:Name="txtNombre" Grid.Column="2" Text="{Binding Nombre}" Style="{StaticResource estiloTextBox}"/>
 
             <!-- Contrasenya pero textbox -->
             <TextBox x:Name="txtContra" Grid.Row="1" Text="{Binding Contrasenya}" 
