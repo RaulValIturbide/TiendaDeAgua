@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Utilidades.Recursos;
 
 namespace TiendaDeAgua.interfaz
 {
@@ -20,11 +21,10 @@ namespace TiendaDeAgua.interfaz
     /// </summary>
     public partial class F1002_Producto : Page
     {
-        Frame _PaginaActiva;
-        public F1002_Producto(Frame PaginaActiva)
+        public F1002_Producto()
         {
             InitializeComponent();
-            _PaginaActiva = PaginaActiva;
+
         }
 
         private void BotonMenuPrincipal_btnMenuPrincipal(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace TiendaDeAgua.interfaz
         /// <param name="e"></param>
         private void Page_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
-            _PaginaActiva.Navigate(new F1003_PaginaPrincipal(_PaginaActiva));
+            Sesion.VolverAtras();
         }
     }
 }

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TiendaDeAgua.interfaz"
       xmlns:util="clr-namespace:Utilidades;assembly=Utilidades"
+      MouseRightButtonUp="Page_MouseRightButtonUp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="900"
       Title="F1001_Usuarios">
