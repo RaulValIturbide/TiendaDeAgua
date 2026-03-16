@@ -1,0 +1,194 @@
+﻿<Page x:Class="TiendaDeAgua.interfaz.F1004_Pedido"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TiendaDeAgua.interfaz"
+         xmlns:util="clr-namespace:Utilidades;assembly=Utilidades"
+         mc:Ignorable="d" 
+         d:DesignHeight="800" d:DesignWidth="800"
+         Title="Pedido">
+    <Grid MouseRightButtonUp="Grid_MouseRightButtonUp">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="{StaticResource AzulSecundarioAiron}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" Content="ADMINISTRACIÓN DE PEDIDOS" 
+            Background="{StaticResource AzulSecundarioAiron}"
+            FontSize="30"
+            FontFamily="Segoe UI Semibold"
+            Foreground="{StaticResource BlancoAiron}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"/>
+
+            <util:BotonMenuPrincipal Grid.Column="0" ToolTip="Vuelve al Menú Principal" 
+                                  btnMenuPrincipal="BotonMenuPrincipal_btnMenuPrincipal"
+                                  />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Header="Ordenar por" x:Name="gbFiltros" Margin="10,0,10,0" Grid.Column="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- BOTON RB ID -->
+                    <RadioButton GroupName="Filtro" Content="ID" IsChecked="True" Checked="rbID_Checked" 
+                                 Grid.Column="0" x:Name="rbID" Style="{StaticResource estiloRadioButton}"/>
+                    <!-- BOTON RB NOMBRE -->
+                    <RadioButton GroupName="Filtro" Content="Nombre" IsChecked="False" Checked="rbNombre_Checked"
+                                 Grid.Column="1" x:Name="rbNombre" Style="{StaticResource estiloRadioButton}"/>
+                    <!-- BOTON RB Fecha -->
+                    <RadioButton GroupName="Filtro" Content="Fecha" IsChecked="False" Checked="rbFecha_Checked"
+                                 Grid.Column="2" x:Name="rbFecha" Style="{StaticResource estiloRadioButton}"/>
+                    <!-- BOTON RB TOTAL -->
+                    <RadioButton GroupName="Filtro" Content="Total" IsChecked="False" Checked="rbTotal_Checked"
+                                 Grid.Column="3" x:Name="rbStock" Style="{StaticResource estiloRadioButton}"/>
+
+                </Grid>
+            </GroupBox>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- FILTRO COMBO ESTADO -->
+                <Label Content="Filtro Estado" Grid.Column="0" Style="{StaticResource estiloLabel}"/>
+                <ComboBox Name="cboEstado" Grid.Column="1" DisplayMemberPath="Texto" SelectedValuePath="Identificador"
+                          SelectedValue="{Binding EstadoID}" Style="{StaticResource estiloComboBox}" SelectionChanged="cboEstado_SelectionChanged"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.8*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid Grid.Column="0" x:Name="dtgPedido" SelectionChanged="dtgPedido_SelectionChanged"
+                   AutoGenerateColumns="False" IsReadOnly="True"
+                   Margin="10" MouseDoubleClick="dtgPedido_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="1*"/>
+                    <DataGridTextColumn Header="Cliente" Binding="{Binding ClienteNombre}" Width="1*"/>
+                    <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="1*"/>
+                    <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="1*"/>
+                    <DataGridTextColumn Header="Estado" Binding="{Binding EstadoNombre}" Width="1*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="250"/>
+                </Grid.RowDefinitions>
+                <util:BarraBotones Grid.Row="0" Padding="5" VerticalAlignment="Center" 
+                                x:Name="BarraBotones_Principal"
+                                NuevoClick="btnNuevo_Click"
+                                ModificarClick="btnModificar_Click"
+                                CancelarClick="btnCancelar_Click"
+                                GuardarClick="btnGuardar_Click"
+                                EliminarClick="btnEliminar_Click"
+                                InformeClick="btnInforme_Click"/>
+                <GroupBox Header="MTO Pedido" Grid.Row="1" x:Name="gbPedido">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="1*" MaxHeight="70"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="1*"  MaxHeight="70"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="1*" MaxHeight="70"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="1*" MaxHeight="70"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Cliente -->
+                        <Label Grid.Row="1" Grid.Column="0" Content="Cliente" Style="{StaticResource estiloLabel}"/>
+                        <ComboBox x:Name="cboCliente" Grid.Column="1" Grid.Row="1" Style="{StaticResource estiloComboBox}"
+                                  SelectedValue="{Binding ClienteID}" DisplayMemberPath="Texto" SelectedValuePath="Identificador"/>
+
+                        <!-- Fecha -->
+                        <Label Grid.Row="3" Grid.Column="0" Content="Fecha" Style="{StaticResource estiloLabel}"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Fecha}" Style="{StaticResource estiloTextBox}"/>
+
+                        <!-- Total -->
+                        <Label Grid.Row="5" Grid.Column="0" Content="Total" Style="{StaticResource estiloLabel}"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Total}" Style="{StaticResource estiloTextBox}"/>
+
+                        <!-- Estado -->
+                        <Label Grid.Row="7" Grid.Column="0" Content="Estado" Style="{StaticResource estiloLabel}"/>
+                        <ComboBox Grid.Row="7" Grid.Column="1" DisplayMemberPath="Texto" SelectedValuePath="Identificador"
+                               SelectedValue="{Binding EstadoID}" Style="{StaticResource estiloComboBox}"       
+                               x:Name="cboEstadoComboBox" />
+
+                    </Grid>
+                </GroupBox>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <util:AyudaContextualBoton AyudaBtn="AyudaContextualBoton_AyudaBtn"
+                                               HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                               Grid.Row="3" Grid.RowSpan="2"
+                                               Grid.Column="0" Grid.ColumnSpan="2"/>
+                    <Border Grid.Row="0"
+                            x:Name="txtAyudaContextual"
+                            Grid.RowSpan="3"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="4"
+                            Background="{StaticResource AzulSecundarioAiron}"
+                            CornerRadius="12"
+                            
+                            Margin="10,10,10,0">
+                        <TextBlock TextAlignment="Center"
+                               TextWrapping="Wrap"
+                               FontSize="14"
+                               Foreground="{StaticResource BlancoAiron}"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                                   Margin="10">
+                        Recuerda que puedes acceder
+                        <LineBreak/>
+                        a los detalles de los pedidos haciendo
+                        Doble click en cualquiera de ellos
+                        </TextBlock>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

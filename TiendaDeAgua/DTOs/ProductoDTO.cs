@@ -13,7 +13,8 @@ namespace TiendaDeAgua.DTOs
         public string Nombre { get; set; } = string.Empty;
         public double Precio { get; set; } 
         public int Stock { get; set; }
-        public int CategoriaID { get; set; } 
+        public long CategoriaID { get; set; }
+        public string CategoriaNombre { get; set; } = string.Empty;
         public bool EsNuevo { get; set; }
 
         public ResultadoDTO ValidarDatos()
@@ -29,13 +30,13 @@ namespace TiendaDeAgua.DTOs
                 res.codigoError = 101;
             }
 
-            if(Precio == 0)
+            if(Precio <= 0)
             {
                 contadorErrores++;
                 mensajero.AppendLine($"{contadorErrores}-Rellene un precio.");
                 res.codigoError = 102;
             }
-            if(Stock == 0)
+            if(Stock <= 0)
             {
                 contadorErrores++;
                 mensajero.AppendLine($"{contadorErrores}-Rellene el campo Stock.");
@@ -48,7 +49,7 @@ namespace TiendaDeAgua.DTOs
                 res.codigoError = 104;
             }
 
-            if(res.codigoError == 0)
+            if(res.codigoError != 0)
             {
                 res.mensajeInformacion = $"Compruebe los siguientes campos.{Environment.NewLine}{mensajero.ToString()}";
             }

@@ -1,0 +1,11 @@
+﻿<Window x:Class="TiendaDeAgua.interfaz.InformeDetallePedido"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Informe Detalle Pedidos" ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    Icon="/Utilidades;component/data/img/AironIcono.png">
+    <Grid >
+        <!-- FlowDocument ScrollViewer -->
+        <FlowDocumentReader x:Name="lectorDocumento" ViewingMode="Scroll" />
+    </Grid>
+</Window>

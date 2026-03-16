@@ -43,6 +43,7 @@ namespace Utilidades.Recursos
             btnAceptar.Focus();
         }
 
+
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

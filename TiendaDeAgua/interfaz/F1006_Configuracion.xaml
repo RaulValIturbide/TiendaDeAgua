@@ -1,0 +1,66 @@
+﻿<Page x:Class="TiendaDeAgua.interfaz.F1006_Configuracion"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:local="clr-namespace:TiendaDeAgua.interfaz"
+        xmlns:util="clr-namespace:Utilidades;assembly=Utilidades"
+        mc:Ignorable="d" 
+        d:DesignHeight="450" d:DesignWidth="800"
+        Title="Configuracion" >
+    <Grid MouseRightButtonDown="Grid_MouseRightButtonUp" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid Background="{StaticResource AzulSecundarioAiron}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="lbSaludo" Style="{StaticResource estiloLabelSaludo}" Grid.Column="1" Grid.ColumnSpan="2" Content="CONFIGURACIÓN" Margin="0,0,100,0" HorizontalAlignment="Center"/>
+                <util:BotonMenuPrincipal Grid.Column="0" ToolTip="Vuelve al Menú Principal" 
+                                  btnMenuPrincipal="BotonMenuPrincipal_btnMenuPrincipal"
+                                  />
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" MaxHeight="80"/>
+                <RowDefinition Height="1*" MaxHeight="80"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" MaxWidth="200"/>
+                    <ColumnDefinition Width="2*" MaxWidth="400"/>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Atajo volver atras M1 -->
+                <Label Grid.Column="0" Content="Activar atajo Volver Atrás " Style="{StaticResource estiloLabel}" ToolTip="Vuelve atrás pulsando Click derecho en cualquier pantalla durante toda la Aplicación."/>
+                <ComboBox Grid.Column="1" x:Name="cboAtajoVolverAtras" Style="{StaticResource estiloComboBox}"
+                          SelectedValuePath="Identificador" DisplayMemberPath="Texto" 
+                          SelectionChanged="cboAtajoVolverAtras_SelectionChanged"/>
+
+            </Grid>
+            <Grid Grid.Row="1" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" MaxWidth="200"/>
+                    <ColumnDefinition Width="2*" MaxWidth="400"/>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <!-- Establecer Pantalla Completa -->
+                <Label Grid.Column="0" Content="Establecer Pantalla " Style="{StaticResource estiloLabel}" 
+                       ToolTip="Selecciona si desea pantalla completa o modo ventana."/>
+                <ComboBox Grid.Column="1" x:Name="cboPantallaCompleta" Style="{StaticResource estiloComboBox}"
+                          SelectedValuePath="Identificador" DisplayMemberPath="Texto" 
+                          SelectionChanged="cboPantallaCompleta_SelectionChanged"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

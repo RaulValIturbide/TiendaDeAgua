@@ -10,7 +10,7 @@
     
     <StackPanel Orientation="Horizontal" >
         
-        <Button x:Name="btnNuevo"  Click="btnNuevo_Click" Background="DarkGreen" Margin="0,0,5,0">
+        <Button x:Name="btnNuevo"  Click="btnNuevo_Click" Background="ForestGreen" Margin="0,0,5,0">
             <StackPanel Orientation="Horizontal">
                 <Image Source="/Utilidades;component/data/img/Nuevo.png" Width="20" HorizontalAlignment="Left" Margin="5,0,5,0"/>
                 <TextBlock Text="Nuevo" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
@@ -42,6 +42,13 @@
             <StackPanel Orientation="Horizontal">
                 <Image Source="/Utilidades;component/data/img/delete.png" Width="20" HorizontalAlignment="Left" Margin="5,0,10,0"/>
                 <TextBlock Text="Eliminar" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="btnInforme"  Click="btnInforme_Click" Background="BlueViolet" Margin="5,0,5,0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Utilidades;component/data/img/reporte.png"  Width="20" HorizontalAlignment="Left" Margin="5,0,10,0"/>
+                <TextBlock Text="Informe" FontSize="15" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
             </StackPanel>
         </Button>
     </StackPanel>

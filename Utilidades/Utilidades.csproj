@@ -8,11 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="data\img\AironIcono.png" />
+    <None Remove="data\img\AironSplashScreen.png" />
+    <None Remove="data\img\AyudaContextual.png" />
     <None Remove="data\img\cancel.png" />
     <None Remove="data\img\check.png" />
     <None Remove="data\img\delete.png" />
     <None Remove="data\img\edicion.png" />
     <None Remove="data\img\guardar.png" />
+    <None Remove="data\img\reporte.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,13 +24,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="data\img\AironIcono.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="data\img\AironSplashScreen.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="data\img\AironSplashScreenInversa.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="data\img\AyudaContextual.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="data\img\cancel.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="data\img\check.png" />
+    <Resource Include="data\img\check.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="data\img\delete.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -37,6 +52,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="data\img\Nuevo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="data\img\reporte.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Image Source="/data/img/AironSplashScreen.png" Grid.Column="1"/>
+            <Image Source="/Utilidades;component/data/img/AironSplashScreen.png"  Grid.Column="1"/>
         </Grid>
         <Grid Grid.Row="1" x:Name="dtgDatosUsuario">
             <Grid.ColumnDefinitions>

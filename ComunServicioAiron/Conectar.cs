@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Sqlite;
+using System.Data;
 
 namespace ComunServicioAiron
 {
@@ -8,12 +9,13 @@ namespace ComunServicioAiron
 
 #if DEBUG
 
-        private static readonly string rutaBD = Path.Combine(
+        private static readonly string a = Path.Combine(
             AppDomain.CurrentDomain.BaseDirectory,
            "data",
            "database",
             "airon.db"
         );
+        private static readonly string rutaBD = Path.GetFullPath("..\\..\\..\\data\\database\\airon.db");
 
 
 #else
@@ -48,17 +50,17 @@ namespace ComunServicioAiron
                 File.Copy(rutaOrigen, rutaBD,overwrite: true);
             }
 
-            using var connection = new SqliteConnection($"Data Source={rutaBD}");
-            connection.Open();
+            //using var connection = new SqliteConnection($"Data Source={rutaBD}");
+            //connection.Open();
 
-            string sql = @"CREATE TABLE IF NOT EXISTS usuarios (
-                    ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Nombre TEXT NOT NULL,
-                    Email Text NULL,
-                    Contrasenya TEXT NOT NULL,
-                    ModoEntrada INTEGER DEFAULT 0);";
+            //string sql = @"CREATE TABLE IF NOT EXISTS usuarios (
+            //        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            //        Nombre TEXT NOT NULL,
+            //        Email Text NULL,
+            //        Contrasenya TEXT NOT NULL,
+            //        ModoEntrada INTEGER DEFAULT 0);";
 
-            EjecutarNonQuery(sql, null);
+            //EjecutarNonQuery(sql, null);
             
         }
 
@@ -172,6 +174,13 @@ namespace ComunServicioAiron
             }
         }
 
+        /// <summary>
+        /// Guarda una lista de DTOs, util para mostra todos los dto en un datagrid
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sql"></param>
+        /// <param name="parametros"></param>
+        /// <returns></returns>
         public static List<T> ObtenerLista<T>(string sql, SqliteParameter[] parametros) where T : new()
         {
             var lista = new List<T>();
@@ -219,8 +228,9 @@ namespace ComunServicioAiron
         /// </summary>
         /// <param name="sql"></param>
         /// <param name="parametros"></param>
+        /// <param name="ninguno">Sirve para que no añada la opcion "Ninguno" al combobox</param>
         /// <returns></returns>
-        public static List<ComboListDTO> ObtenerCombo(string sql, SqliteParameter[] parametros)
+        public static List<ComboListDTO> ObtenerCombo(string sql, SqliteParameter[] parametros,bool ninguno)
         {
             //Creamos lista para devolverla
             List<ComboListDTO> lista = new List<ComboListDTO>();
@@ -243,14 +253,44 @@ namespace ComunServicioAiron
                         {
                             lista.Add(new ComboListDTO
                             {
-                                Identificador = reader.GetInt32(0),
+                                Identificador = (long) reader.GetInt32(0),
                                 Texto = reader.GetString(1)
+                            });                            
+                        }
+                        //Esto lo hacemos para que se pueda elegir un "no aplicar filtro" y se pueda salir del filtro
+                        if (ninguno)
+                        {
+                            //Añades un ultimo a la lista con el texto "ninguno"
+                            lista.Add(new ComboListDTO
+                            {
+                                Identificador = 0, //-> Lo ponemos en 0 para que no nos salte un OutOfIndex y ya podemos gestionar a la consulta que no haga caso si hay un 0
+                                Texto = "Ninguno"
                             });
                         }
                     }
                 }
             }
             return lista;
+        }
+
+        public DataTable ObtenerProductos()
+        {
+            DataTable tabla = new DataTable();
+
+            using (var con = new SqliteConnection("Data Source=Tienda.db"))
+            {
+                con.Open();
+
+                using (var cmd = new SqliteCommand(
+                    " SELECT ID, Nombre, Precio, Stock, CategoriaID" +
+                    " FROM Producto", con))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    tabla.Load(reader);
+                }
+            }
+
+            return tabla;
         }
 
 

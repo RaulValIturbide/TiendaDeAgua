@@ -14,8 +14,9 @@ namespace TiendaDeAgua.Tablas
     {
         public static List<ProductoDTO> ListaProducto()
         {
-            string sql = " Select ID,Nombre,Precio,Stock,CategoriaID " +
-                         " FROM Producto ";
+            string sql = " Select p.ID,p.Nombre,Precio,Stock,p.CategoriaID,c.Nombre as CategoriaNombre " +
+                         " FROM Producto p  " +
+                         " LEFT JOIN Categoria c on(p.CategoriaID = c.ID) ";
 
             return ComunServicioAiron.Conectar.ObtenerLista<ProductoDTO>(sql,null);
         }
@@ -96,7 +97,7 @@ namespace TiendaDeAgua.Tablas
         public static ResultadoDTO BorrarFila(ProductoDTO pProductoDTO)
         {
             ResultadoDTO res = new();
-            string sql = " DELETE Producto " +
+            string sql = " DELETE FROM Producto " +
                          " WHERE ID = @pID ";
             var parametros = new SqliteParameter[]
             {
@@ -119,7 +120,9 @@ namespace TiendaDeAgua.Tablas
         {
             string sql = " SELECT ID as Identificador, Nombre as Texto " +
                          " FROM Categoria ";
-            return ComunServicioAiron.Conectar.ObtenerCombo(sql, null);
+            return ComunServicioAiron.Conectar.ObtenerCombo(sql, null,false);
         }
+
+
     }
 }

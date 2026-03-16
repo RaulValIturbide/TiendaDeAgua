@@ -19,6 +19,8 @@ namespace Utilidades.Recursos
         //Aqui guardamos datos importantes, ahora mismo solo se guarda el nombre y modo entrada del usuario, pero es escalable
         public static Dictionary<string,string> llaves = new();
         public static Frame? NavegadorPantallas;
+        public static bool ActivarVolverAtras { get; set; } //Configuraciones
+        public static bool PantallaCompleta { get; set; } //Configuraciones
 
         //Este metodo lo usamos para renovar el diccionario cuando el usuario sale de la sesion
         public static void RenovarLlaves()
@@ -35,28 +37,26 @@ namespace Utilidades.Recursos
             NavegadorPantallas = frame;
         }
         /// <summary>
-        /// Lo usamos para cambiar de pestañas usando el frame inicial
+        /// Lo usamos para cambiar de pestañas(Pages) usando el frame inicial
         /// </summary>
         /// <returns></returns>
-        public static Frame GestorPantalla()
+        public static void GestorPantalla(Page paginaDestino)
         {
             if(NavegadorPantallas != null)
             {
-                return NavegadorPantallas;
-            }
-            else
-            {
-                return null;
+                NavegadorPantallas.Navigate(paginaDestino);
             }
         }
 
         //Vuelve a la pantalla anterior si la hay
         public static void VolverAtras()
         {
-            if(NavegadorPantallas != null)
+            if(NavegadorPantallas != null && ActivarVolverAtras)
             {
                 NavegadorPantallas.NavigationService.GoBack();
             }          
         }
+
+        
     }
 }

@@ -16,10 +16,8 @@ namespace TiendaDeAgua.interfaz
         {
             InitializeComponent();
             dtgDatosUsuario.DataContext = _UsuarioDTO;
-            txtNombre.Focus();//Mejora de accesibilidad, el usuario empieza con el textbox focuseado para escribir su nombre
-           
+            txtNombre.Focus();//Mejora de accesibilidad, el usuario empieza con el textbox focuseado para escribir su nombre           
         }
-
 
         private void btnAcceder_Click(object sender, RoutedEventArgs e)
         {
@@ -33,12 +31,12 @@ namespace TiendaDeAgua.interfaz
                 Sesion.llaves.Add("ModoEntrada", usuario.ModoEntrada.ToString());
                 Sesion.llaves.Add("Nombre", usuario.Nombre);
                 F1003_PaginaPrincipal f1003 = new();
-                Sesion.GestorPantalla().Navigate(f1003);
+                Sesion.GestorPantalla(f1003);
             }
             else
             {
                 ResultadoDTO res = new();
-                res.mensajeInformacion = $"Usuario no encontrado.¿Aún no estás registrado? pulsa el botón registrar.";
+                res.mensajeInformacion = $"Usuario no encontrado.{Environment.NewLine}¿Aún no estás registrado? pulsa el botón registrar.";
                 res.codigoError = 101;
                 HerramientaVentana.MostrarError(res);
             }
@@ -46,18 +44,8 @@ namespace TiendaDeAgua.interfaz
 
         private void btnRegistrar_Click(object sender, RoutedEventArgs e)
         {
-            _UsuarioDTO.EsNuevo = true;
-            ResultadoDTO res = UsuarioBD.GuardarDatos(_UsuarioDTO);
-
-            if(res.codigoError == 0)
-            {
-                HerramientaVentana.Show(res.mensajeInformacion);
-
-            }
-            else
-            {
-                HerramientaVentana.MostrarError(res);
-            }
+            F1008_RegistrarUsuario f1008 = new();
+            f1008.ShowDialog();
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)

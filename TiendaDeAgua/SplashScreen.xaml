@@ -10,7 +10,7 @@
         ShowInTaskbar="False">
 
     <Grid Width="400" >
-        <Image Source="data/img/AironSplashScreen.png"
+        <Image Source="/Utilidades;component/data/img/AironSplashScreen.png"
                Stretch="Uniform"
                Margin="0"/>
     </Grid>

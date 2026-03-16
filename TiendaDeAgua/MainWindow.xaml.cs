@@ -17,10 +17,13 @@ namespace TiendaDeAgua
         {
             InitializeComponent();
             ComunServicioAiron.Conectar.ActivarConexion();
-            Sesion.GuardarFrame(framePantalla);            
+            Sesion.GuardarFrame(framePantalla);
+           
             F1000_Login f1000 = new();
             framePantalla.Navigate(f1000);
         }
+
+
 
 
 

@@ -20,7 +20,7 @@
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="Foreground" Value="{StaticResource BlancoAiron}"/>
-        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontSize" Value="14"/>
         <Setter Property="Padding" Value="20"/>
         <Setter Property="FontFamily" Value="Calibri"/>
         <Setter Property="MaxHeight" Value="60"/>
@@ -82,6 +82,16 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="Calibri Light"/>
         <Setter Property="MaxHeight"  Value="60"/>
+    </Style>
+    
+    <!-- PARA RADIO BUTTON -->
+    <Style x:Key="estiloRadioButton" TargetType="RadioButton">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontFamily" Value="Calibri Light"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Background" Value="{StaticResource BlancoAiron}"/>
+        <Setter Property="Foreground" Value="Black"/>
     </Style>
 
 </ResourceDictionary>

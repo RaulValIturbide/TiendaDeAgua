@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition"
+        xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+
+	<DataSources>
+		<DataSource Name="DummyDataSource">
+			<DataSourceReference>DummyDataSource</DataSourceReference>
+			<rd:DataSourceID>00000000-0000-0000-0000-000000000000</rd:DataSourceID>
+		</DataSource>
+	</DataSources>
+
+	<DataSets>
+		<DataSet Name="DataSetProducto">
+			<Query>
+				<DataSourceName>DummyDataSource</DataSourceName>
+				<CommandText></CommandText>
+			</Query>
+			<Fields>
+				<Field Name="ID">
+					<DataField>ID</DataField>
+					<rd:TypeName>System.Int32</rd:TypeName>
+				</Field>
+				<Field Name="Nombre">
+					<DataField>Nombre</DataField>
+					<rd:TypeName>System.String</rd:TypeName>
+				</Field>
+				<Field Name="PrecioUnidad">
+					<DataField>PrecioUnidad</DataField>
+					<rd:TypeName>System.Decimal</rd:TypeName>
+				</Field>
+				<Field Name="Stock">
+					<DataField>Stock</DataField>
+					<rd:TypeName>System.Decimal</rd:TypeName>
+				</Field>
+				<Field Name="CategoriaID">
+					<DataField>CategoriaID</DataField>
+					<rd:TypeName>System.Int32</rd:TypeName>
+				</Field>
+			</Fields>
+		</DataSet>
+	</DataSets>
+
+	<Body>
+		<ReportItems>
+			<Tablix Name="TablaProductos">
+				<TablixBody>
+					<TablixColumns>
+						<TablixColumn>
+							<Width>1in</Width>
+						</TablixColumn>
+						<TablixColumn>
+							<Width>2in</Width>
+						</TablixColumn>
+						<TablixColumn>
+							<Width>1in</Width>
+						</TablixColumn>
+						<TablixColumn>
+							<Width>1in</Width>
+						</TablixColumn>
+						<TablixColumn>
+							<Width>1in</Width>
+						</TablixColumn>
+					</TablixColumns>
+
+					<TablixRows>
+
+						<!-- ENCABEZADOS -->
+						<TablixRow>
+							<Height>0.3in</Height>
+							<TablixCells>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="IDHeader">
+											<Paragraphs>
+												<Paragraph>
+													<TextRuns>
+														<TextRun>
+															<Value>ID</Value>
+														</TextRun>
+													</TextRuns>
+												</Paragraph>
+											</Paragraphs>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="NombreHeader">
+											<Paragraphs>
+												<Paragraph>
+													<TextRuns>
+														<TextRun>
+															<Value>Nombre</Value>
+														</TextRun>
+													</TextRuns>
+												</Paragraph>
+											</Paragraphs>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="PrecioHeader">
+											<Paragraphs>
+												<Paragraph>
+													<TextRuns>
+														<TextRun>
+															<Value>Precio</Value>
+														</TextRun>
+													</TextRuns>
+												</Paragraph>
+											</Paragraphs>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="StockHeader">
+											<Paragraphs>
+												<Paragraph>
+													<TextRuns>
+														<TextRun>
+															<Value>Stock</Value>
+														</TextRun>
+													</TextRuns>
+												</Paragraph>
+											</Paragraphs>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="CategoriaHeader">
+											<Paragraphs>
+												<Paragraph>
+													<TextRuns>
+														<TextRun>
+															<Value>Categoria</Value>
+														</TextRun>
+													</TextRuns>
+												</Paragraph>
+											</Paragraphs>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+							</TablixCells>
+						</TablixRow>
+
+						<!-- FILA DE DATOS -->
+						<TablixRow>
+							<Height>0.3in</Height>
+							<TablixCells>
+
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="ID">
+											<Paragraphs>
+												<Paragraph>
+													<TextRuns>
+														<TextRun>
+															<Value>=Fields!ID.Value</Value>
+														</TextRun>
+													</TextRuns>
+												</Paragraph>
+											</Paragraphs>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="Nombre">
+											<Paragraphs>
+												<Paragraph>
+													<TextRuns>
+														<TextRun>
+															<Value>=Fields!Nombre.Value</Value>
+														</TextRun>
+													</TextRuns>
+												</Paragraph>
+											</Paragraphs>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="PrecioUnidad">
+											<Paragraphs>
+												<Paragraph>
+													<TextRuns>
+														<TextRun>
+															<Value>=Fields!PrecioUnidad.Value</Value>
+														</TextRun>
+													</TextRuns>
+												</Paragraph>
+											</Paragraphs>
+										</Textbox>
+									</CellContents>
+								

@@ -1,13 +1,22 @@
-﻿using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using Utilidades.Recursos;
 namespace TiendaDeAgua.DTOs
 {
     public class UsuarioDTO
     {
+        [Required,NotNull]
         public int ID { get; set; }
+        [Required,NotNull]
         public string Nombre { get; set; } = string.Empty;
+        [Required,NotNull]
         public string Contrasenya { get; set; } = string.Empty;
-        public int ModoEntrada { get; set; } = 0;
+        //Esto sirve para saber si el usuario es admin o darle un rol específico
+        //Ahora mismo diferencia entre 0 -> default-> usuario base Y 1 -> admin, teniendo en cuenta el usuario
+        //que está usando la app podríamos mostrar u ocultar diferentes cosas
+        public int ModoEntrada { get; set; } = 0; 
+        public string Email { get; set; } = string.Empty;
 
         public bool EsNuevo { get; set; }
         public ResultadoDTO ValidarDatos()

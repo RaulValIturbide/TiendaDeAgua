@@ -1,0 +1,121 @@
+﻿<Page x:Class="TiendaDeAgua.interfaz.F1005_Cliente"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TiendaDeAgua.interfaz"
+    xmlns:util="clr-namespace:Utilidades;assembly=Utilidades"
+    mc:Ignorable="d" 
+    d:DesignHeight="450" d:DesignWidth="800"
+    Title="Cliente"
+      MouseRightButtonUp="Page_MouseRightButtonUp">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="{StaticResource AzulSecundarioAiron}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" Content="ADMINISTRACIÓN DE CLIENTES" 
+            Background="{StaticResource AzulSecundarioAiron}"
+            FontSize="30"
+            FontFamily="Segoe UI Semibold"
+            Foreground="{StaticResource BlancoAiron}"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"/>
+
+            <util:BotonMenuPrincipal Grid.Column="0" ToolTip="Vuelve al Menú Principal" 
+                                  btnMenuPrincipal="BotonMenuPrincipal_btnMenuPrincipal"
+                                  />
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+            <GroupBox Header="Ordenar Por" Grid.ColumnSpan="4" Margin="10,0,10,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- BOTON RB POR ID -->
+                    <RadioButton GroupName="OrdenarPor" Content="ID" IsChecked="True" x:Name="rbID" Checked="rbID_Checked" Margin="10,5,10,5" Grid.Column="0"/>
+                    <!-- BOTON RB POR NOMBRE -->
+                    <RadioButton GroupName="OrdenarPor" Content="Nombre" IsChecked="False" x:Name="rbNombre" Checked="rbNombre_Checked" Margin="10,5,10,5" Grid.Column="1"/>
+                    <!-- BOTON RB POR CONTACTO -->
+                    <RadioButton GroupName="OrdenarPor" Content="Contacto" IsChecked="False" x:Name="rbContacto" Checked="rbContacto_Checked" Margin="10,5,10,5" Grid.Column="2"/>
+                    <!-- BOTON RB POR DIRECCION -->
+                    <RadioButton GroupName="OrdenarPor" Content="Direccion" IsChecked="False" x:Name="rbDireccion" Checked="rbDireccion_Checked"  Margin="10,5,10,5" Grid.Column="3"/>
+                </Grid>
+            </GroupBox>
+            
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.8*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid Grid.Column="0" x:Name="dtgCliente" SelectionChanged="dtgCliente_SelectionChanged"
+                   AutoGenerateColumns="False" IsReadOnly="True"
+                   Margin="10">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nº Identificación" Binding="{Binding ID}" Width="1*"/>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="1*"/>
+                    <DataGridTextColumn Header="Contacto" Binding="{Binding Contacto}" Width="1*"/>
+                    <DataGridTextColumn Header="Dirección" Binding="{Binding Direccion}" Width="1*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <util:BarraBotones Grid.Row="0" Padding="5" VerticalAlignment="Center" 
+                                x:Name="BarraBotones_Principal"
+                                NuevoClick="btnNuevo_Click"
+                                ModificarClick="btnModificar_Click"
+                                CancelarClick="btnCancelar_Click"
+                                GuardarClick="btnGuardar_Click"
+                                EliminarClick="btnEliminar_Click"
+                                InformeClick="btnInforme_Click"/>
+                <GroupBox Header="MTO Cliente" Grid.Row="1" x:Name="gbCliente">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5" />
+                            <RowDefinition Height="1*" MaxHeight="70"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="1*"  MaxHeight="70"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="1*" MaxHeight="70"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Nombre -->
+                        <Label Grid.Row="1" Grid.Column="0" Content="Nombre" Style="{StaticResource estiloLabel}"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Nombre}" Style="{StaticResource estiloTextBox}"/>
+
+                        <!-- Contacto -->
+                        <Label Grid.Row="3" Grid.Column="0" Content="Contacto" Style="{StaticResource estiloLabel}"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Contacto}" Style="{StaticResource estiloTextBox}"/>
+
+                        <!-- Direccion -->
+                        <Label Grid.Row="5" Grid.Column="0" Content="Dirección" Style="{StaticResource estiloLabel}"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Direccion}" Style="{StaticResource estiloTextBox}"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

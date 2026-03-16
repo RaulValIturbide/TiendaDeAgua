@@ -30,11 +30,9 @@ namespace TiendaDeAgua.interfaz
 
             CargarDatos();
 
-            cboCategoria.ItemsSource = ProductoBD.ComboCategoria();
-            
+            cboCategoria.ItemsSource = ProductoBD.ComboCategoria();            
 
             EstablecerAspectoFormulario(EstadoFormulario.Consulta);
-
         }
 
         #region Metodos Privados
@@ -62,6 +60,7 @@ namespace TiendaDeAgua.interfaz
                     BarraBotones_Principal.VisibilidadBotonGuardar = Visibility.Visible;
                     BarraBotones_Principal.VisibilidadBotonCancelar = Visibility.Visible;
                     BarraBotones_Principal.VisibilidadBotonEliminar = Visibility.Collapsed;
+                    BarraBotones_Principal.VisibilidadBotonInforme = Visibility.Collapsed;
                     //Extras
                     _ProductoDTO = new ProductoDTO() { EsNuevo = true };
                     gbProducto.DataContext = _ProductoDTO;
@@ -77,6 +76,7 @@ namespace TiendaDeAgua.interfaz
                     BarraBotones_Principal.VisibilidadBotonGuardar = Visibility.Visible;
                     BarraBotones_Principal.VisibilidadBotonCancelar = Visibility.Visible;
                     BarraBotones_Principal.VisibilidadBotonEliminar = Visibility.Visible;
+                    BarraBotones_Principal.VisibilidadBotonInforme = Visibility.Collapsed;
                     //Extras
                     _ProductoDTO.EsNuevo = false;
                     break;
@@ -92,15 +92,17 @@ namespace TiendaDeAgua.interfaz
                     BarraBotones_Principal.VisibilidadBotonGuardar = Visibility.Collapsed;
                     BarraBotones_Principal.VisibilidadBotonCancelar = Visibility.Collapsed;
                     BarraBotones_Principal.VisibilidadBotonEliminar = Visibility.Collapsed;
+                    BarraBotones_Principal.VisibilidadBotonInforme = Visibility.Visible;
                     break;
             }
         }
 
         #endregion
 
+        #region Eventos
         private void BotonMenuPrincipal_btnMenuPrincipal(object sender, EventArgs e)
-        {
-            Sesion.VolverAtras();
+        {            
+            Sesion.GestorPantalla(new F1003_PaginaPrincipal());
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
@@ -124,7 +126,6 @@ namespace TiendaDeAgua.interfaz
             if(_ProductoDTO != null)
             {
                 //TODO : ARREGLAR BINDING
-                _ProductoDTO.CategoriaID = Convert.ToInt32(cboCategoria.SelectedIndex);
                 ResultadoDTO res = ProductoBD.GuardarDatos(_ProductoDTO);
                 if(res.codigoError == 0)
                 {
@@ -181,5 +182,12 @@ namespace TiendaDeAgua.interfaz
         {
             Sesion.VolverAtras();
         }
+
+        private void btnInforme_Click(object sender, EventArgs e)
+        {
+            InformeProducto informe = new();
+            informe.ShowDialog();
+        }
+        #endregion
     }
 }

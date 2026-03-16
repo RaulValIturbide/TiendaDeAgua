@@ -29,11 +29,8 @@
                HorizontalAlignment="Center"/>
 
             <util:BotonMenuPrincipal Grid.Column="0" ToolTip="Vuelve al Menú Principal" 
-                                     btnMenuPrincipal="BotonMenuPrincipal_btnMenuPrincipal"
-                                     />
+                                     btnMenuPrincipal="BotonMenuPrincipal_btnMenuPrincipal"/>
         </Grid>
-        
-
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.8*"/>
@@ -43,8 +40,10 @@
                       AutoGenerateColumns="False" IsReadOnly="True"
                       Margin="10">
                 <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="1*"/>
                     <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="1*"/>
                     <DataGridTextColumn Header="Contraseña" Binding="{Binding Contrasenya}" Width="1*"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="1*"/>
                     <DataGridTextColumn Header="Modo Entrada" Binding="{Binding ModoEntrada}" Width="1*"/>
                 </DataGrid.Columns>
             </DataGrid>
@@ -70,6 +69,8 @@
                             <RowDefinition Height="1*"  MaxHeight="70"/>
                             <RowDefinition Height="10"/>
                             <RowDefinition Height="1*" MaxHeight="70"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="1*" MaxHeight="70"/>
                         </Grid.RowDefinitions>
 
                         <Grid.ColumnDefinitions>
@@ -88,6 +89,10 @@
                         <!-- MODO DE ENTRADA -->
                         <Label Grid.Row="5" Grid.Column="0" Content="Modo Entrada" Style="{StaticResource estiloLabel}"/>
                         <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding ModoEntrada}" Style="{StaticResource estiloTextBox}"/>
+
+                        <!-- EMAIL -->
+                        <Label Grid.Row="7" Grid.Column="0" Content="Email" Style="{StaticResource estiloLabel}"/>
+                        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Email}" Style="{StaticResource estiloTextBox}"/>
                     </Grid>
                 </GroupBox> 
             </Grid>

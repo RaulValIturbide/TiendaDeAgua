@@ -15,14 +15,16 @@ namespace Utilidades
         public event EventHandler? GuardarClick;
         public event EventHandler? CancelarClick;
         public event EventHandler? EliminarClick;
+        public event EventHandler? InformeClick;
 
+        
 
         public BarraBotones()
         {
             InitializeComponent();
         }
 
-
+        #region Eventos
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             NuevoClick?.Invoke(this, e);
@@ -47,7 +49,12 @@ namespace Utilidades
         {
             CancelarClick?.Invoke(this, e);
         }
+        private void btnInforme_Click(object sender, RoutedEventArgs e)
+        {
+            InformeClick?.Invoke(this, e);
+        }
 
+        #endregion
 
         #region PROPIEDADES PUBLICAS 
 
@@ -78,6 +85,11 @@ namespace Utilidades
             get { return this.btnEliminar.Visibility; }
             set { this.btnEliminar.Visibility = value; }
         }
+        public Visibility VisibilidadBotonInforme
+        {
+            get { return this.btnInforme.Visibility; }
+            set { this.btnInforme.Visibility = value; }
+        }
 
         #endregion
 
@@ -101,6 +113,8 @@ namespace Utilidades
                 this.btnModificar.Visibility = Visibility.Collapsed;
             }
         }
+
+
 
         #endregion
 

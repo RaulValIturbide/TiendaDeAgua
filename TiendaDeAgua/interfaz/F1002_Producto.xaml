@@ -44,7 +44,7 @@
                     <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="1*"/>
                     <DataGridTextColumn Header="Precio" Binding="{Binding Precio}" Width="1*"/>
                     <DataGridTextColumn Header="Stock" Binding="{Binding Stock}" Width="1*"/>
-                    <DataGridTextColumn Header="Categoria" Binding="{Binding Categoria}" Width="1*"/>
+                    <DataGridTextColumn Header="Categoria" Binding="{Binding CategoriaNombre}" Width="1*"/>
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -59,7 +59,8 @@
                                    ModificarClick="btnModificar_Click"
                                    CancelarClick="btnCancelar_Click"
                                    GuardarClick="btnGuardar_Click"
-                                   EliminarClick="btnEliminar_Click"/>
+                                   EliminarClick="btnEliminar_Click"
+                                   InformeClick="btnInforme_Click"/>
                 <GroupBox Header="MTO Producto" Grid.Row="1" x:Name="gbProducto">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -93,8 +94,8 @@
                         <!-- CATEGORIA -->
                         <Label Grid.Row="7" Grid.Column="0" Content="Categoria" Style="{StaticResource estiloLabel}"/>
                         <ComboBox Grid.Row="7" Grid.Column="1" DisplayMemberPath="Texto" SelectedValuePath="Identificador"
-                                  SelectedValue="{Binding CategoriaID}" Style="{StaticResource estiloComboBox}"
-                                  x:Name="cboCategoria"/>
+                                  SelectedValue="{Binding CategoriaID}" Style="{StaticResource estiloComboBox}"       
+                                  x:Name="cboCategoria" />
                     </Grid>
                 </GroupBox>
             </Grid>

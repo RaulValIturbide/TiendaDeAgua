@@ -11,10 +11,12 @@ namespace TiendaDeAgua.interfaz
     /// </summary>
     public partial class F1001_Usuarios : Page
     {
+
         #region Propiedades Privadas
         private static UsuarioDTO _UsuarioDTO = new();
         private static Frame _PaginaActiva = new();
         #endregion
+
         public F1001_Usuarios()
         {
             InitializeComponent();
@@ -47,6 +49,8 @@ namespace TiendaDeAgua.interfaz
                 case Utilidades.Recursos.EstadoFormulario.Nuevo:
                     //dtg
                     dtgUsuarios.IsEnabled = false;
+                    //GB
+                    gbUsuario.IsEnabled = true;
                     //BarraBotones
                     BarraBotones_Principal.VisibilidadBotonNuevo = Visibility.Collapsed;
                     BarraBotones_Principal.VisibilidadBotonModificar = Visibility.Collapsed;
@@ -54,6 +58,7 @@ namespace TiendaDeAgua.interfaz
                     BarraBotones_Principal.VisibilidadBotonCancelar = Visibility.Visible;
                     BarraBotones_Principal.VisibilidadBotonGuardar = Visibility.Visible;
                     BarraBotones_Principal.VisibilidadBotonEliminar = Visibility.Collapsed;
+                    BarraBotones_Principal.VisibilidadBotonInforme = Visibility.Collapsed;
 
                     //EXTRAS
                     _UsuarioDTO = new()
@@ -65,6 +70,8 @@ namespace TiendaDeAgua.interfaz
                 case Utilidades.Recursos.EstadoFormulario.Edicion:
                     //dtg
                     dtgUsuarios.IsEnabled = false;
+                    //GB
+                    gbUsuario.IsEnabled = true;
                     //BarraBotones
                     BarraBotones_Principal.VisibilidadBotonNuevo = Visibility.Collapsed;
                     BarraBotones_Principal.VisibilidadBotonModificar = Visibility.Collapsed;
@@ -72,12 +79,15 @@ namespace TiendaDeAgua.interfaz
                     BarraBotones_Principal.VisibilidadBotonCancelar = Visibility.Visible;
                     BarraBotones_Principal.VisibilidadBotonGuardar = Visibility.Visible;
                     BarraBotones_Principal.VisibilidadBotonEliminar = Visibility.Visible;
+                    BarraBotones_Principal.VisibilidadBotonInforme = Visibility.Collapsed;
                     //EXTRAS
                     _UsuarioDTO.EsNuevo = false;
                     break;
                 case Utilidades.Recursos.EstadoFormulario.Consulta:
                     //dtg
                     dtgUsuarios.IsEnabled = true;
+                    //GB
+                    gbUsuario.IsEnabled = false;
                     //BarraBotones
                     BarraBotones_Principal.VisibilidadBotonNuevo = Visibility.Visible;
                     BarraBotones_Principal.AparecerBotonModificar<UsuarioDTO>(dtgUsuarios);
@@ -85,6 +95,7 @@ namespace TiendaDeAgua.interfaz
                     BarraBotones_Principal.VisibilidadBotonCancelar = Visibility.Collapsed;
                     BarraBotones_Principal.VisibilidadBotonGuardar = Visibility.Collapsed;
                     BarraBotones_Principal.VisibilidadBotonEliminar = Visibility.Collapsed;
+                    BarraBotones_Principal.VisibilidadBotonInforme = Visibility.Collapsed;
                     break;
             }
         }
@@ -162,16 +173,16 @@ namespace TiendaDeAgua.interfaz
         private void BotonMenuPrincipal_btnMenuPrincipal(object sender, EventArgs e)
         {
             F1003_PaginaPrincipal f1003 = new();
-            Sesion.GestorPantalla().Navigate(f1003);
+            Sesion.GestorPantalla(f1003);
         }
-
-
-
-        #endregion
-
         private void Page_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Sesion.VolverAtras();
         }
+
+
+        #endregion
+
+
     }
 }

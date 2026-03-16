@@ -9,7 +9,7 @@ namespace TiendaDeAgua.Tablas
 
         public static List<UsuarioDTO> ListaUsuario()
         {
-            string sql = " SELECT ID,Nombre,Contrasenya,ModoEntrada " +
+            string sql = " SELECT ID,Nombre,Contrasenya,ModoEntrada,Email " +
                          " FROM usuarios ";
 
             return ComunServicioAiron.Conectar.ObtenerLista<UsuarioDTO>(sql, null);
@@ -22,7 +22,7 @@ namespace TiendaDeAgua.Tablas
         /// <returns></returns>
         public static UsuarioDTO AccesoUsuario(UsuarioDTO pUsuarioDTO)
         {
-            string sql = " SELECT ID,Nombre,Contrasenya,ModoEntrada " +
+            string sql = " SELECT ID,Nombre,Contrasenya,ModoEntrada,Email " +
                          " FROM usuarios " +
                          " WHERE Nombre = @pNombre " +
                          " AND Contrasenya = @pContrasenya ";
@@ -42,14 +42,15 @@ namespace TiendaDeAgua.Tablas
 
             if (res.codigoError == 0)
             {
-                if (pUsuarioDTO.EsNuevo)
-                {
-                    res = AltaFila(pUsuarioDTO);
-                }
-                else
-                {
-                    res = ModificarFila(pUsuarioDTO);
-                }
+                    if (pUsuarioDTO.EsNuevo)
+                    {
+                        res = AltaFila(pUsuarioDTO);
+                    }
+                    else
+                    {
+                        res = ModificarFila(pUsuarioDTO);
+                    }
+
             }
             return res;
         }
@@ -60,7 +61,8 @@ namespace TiendaDeAgua.Tablas
             string sql = " UPDATE usuarios " +
                          " SET Nombre = @pNombre, " +
                          " Contrasenya = @pContrasenya, " +
-                         " ModoEntrada = @pModoEntrada " +
+                         " ModoEntrada = @pModoEntrada," +
+                         " Email = @pEmail " +
                          " WHERE ID = @pID ";
 
             var parametros = new SqliteParameter[]
@@ -68,6 +70,7 @@ namespace TiendaDeAgua.Tablas
                 new SqliteParameter("@pNombre",pUsuarioDTO.Nombre),
                 new SqliteParameter("@pContrasenya",pUsuarioDTO.Contrasenya),
                 new SqliteParameter("@pModoEntrada",pUsuarioDTO.ModoEntrada),
+                new SqliteParameter("@pEmail",pUsuarioDTO.Email),
                 new SqliteParameter("@pID",pUsuarioDTO.ID)
             };
 
@@ -93,13 +96,14 @@ namespace TiendaDeAgua.Tablas
 
             if (res.codigoError == 0)
             {
-                string sql = " INSERT INTO usuarios(Nombre,Contrasenya) " +
-                             " VALUES(@pNombre,@pContrasenya) ";
+                string sql = " INSERT INTO usuarios(Nombre,Contrasenya,Email) " +
+                             " VALUES(@pNombre,@pContrasenya,@pEmail) ";
 
                 var parametros = new SqliteParameter[]
                 {
                     new SqliteParameter("@pNombre",pUsuarioDTO.Nombre),
-                    new SqliteParameter("@pContrasenya",pUsuarioDTO.Contrasenya)
+                    new SqliteParameter("@pContrasenya",pUsuarioDTO.Contrasenya),
+                    new SqliteParameter("@pEmail",pUsuarioDTO.Email)
                 };
 
                 int filasAfectadas = ComunServicioAiron.Conectar.EjecutarNonQuery(sql, parametros);

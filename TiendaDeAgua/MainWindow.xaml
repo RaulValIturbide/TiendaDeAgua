@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TiendaDeAgua"
         xmlns:util="clr-namespace:Utilidades;assembly=Utilidades"
         WindowStartupLocation="CenterScreen"
-        Icon="/data/img/AironIcono.png"
+        Icon="/Utilidades;component/data/img/AironIcono.png"
         mc:Ignorable="d"
         Title="Pagina Principal" 
         Height="800" Width="1200"
