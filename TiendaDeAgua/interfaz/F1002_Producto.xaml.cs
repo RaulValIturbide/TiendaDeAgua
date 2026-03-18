@@ -16,6 +16,15 @@ using TiendaDeAgua.DTOs;
 using TiendaDeAgua.Tablas;
 using Utilidades.Recursos;
 
+
+
+
+
+
+
+
+
+
 namespace TiendaDeAgua.interfaz
 {
     /// <summary>
@@ -185,9 +194,16 @@ namespace TiendaDeAgua.interfaz
 
         private void btnInforme_Click(object sender, EventArgs e)
         {
-            InformeProducto informe = new();
-            informe.ShowDialog();
+
         }
+
+
+
+
+
+
+
+
         #endregion
     }
 }

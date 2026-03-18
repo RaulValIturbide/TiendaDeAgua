@@ -183,8 +183,7 @@ namespace TiendaDeAgua.interfaz
 
         private void btnInforme_Click(object sender, EventArgs e)
         {
-            InformeCliente paginaInforme = new InformeCliente();
-            paginaInforme.ShowDialog();
+
         }
 
         private void Page_MouseRightButtonUp(object sender, MouseButtonEventArgs e)

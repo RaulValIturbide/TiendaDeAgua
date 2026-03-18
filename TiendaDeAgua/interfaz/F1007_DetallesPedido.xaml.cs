@@ -203,8 +203,7 @@ namespace TiendaDeAgua.interfaz
 
         private void btnInforme_Click(object sender, EventArgs e)
         {
-            InformeDetallePedido informeDetallePedido = new(_PedidoDTO.ID);
-            informeDetallePedido.ShowDialog();
+  
         }
     }
 }

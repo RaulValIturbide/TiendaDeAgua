@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TiendaDeAgua.DTOs;
+using TiendaDeAgua.Informes;
 using TiendaDeAgua.Tablas;
 using Utilidades.Recursos;
 
@@ -234,8 +235,8 @@ namespace TiendaDeAgua.interfaz
 
         private void btnInforme_Click(object sender, EventArgs e)
         {
-            InformePedido informe = new(seleccionFiltro, Convert.ToInt32(cboEstado.SelectedValue));
-            informe.ShowDialog();
+            ProductoReport pr = new();
+            pr.Show();
         }
 
         #region Radio Buttons

@@ -10,22 +10,33 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Informes\ProductoReport.rdlc" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Content Include="data\database\airon.db">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Informes\ProductoReport.rdlc">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="BoldReports.WPF" Version="12.2.15" />
 		<PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.5" />
-		<PackageReference Include="System.CodeDom" Version="10.0.5" />
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.5" />
-		<PackageReference Include="System.Drawing.Common" Version="10.0.5" />
-		<PackageReference Include="System.Security.Permissions" Version="10.0.5" />
+		<PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\ComunServicioAiron\ComunServicioAiron.csproj" />
 		<ProjectReference Include="..\Utilidades\Utilidades.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="appsettings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>
